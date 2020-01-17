@@ -35,4 +35,5 @@ git push heroku master
 
 heroku ps:scale web=1
 
-
+- Images on index.html
+[Pixabay](https://pixabay.com/photos/notebook-workplace-desk-iphone-336634/)
