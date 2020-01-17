@@ -27,7 +27,8 @@
 .HP-BG-grey-sec {
     position: relative;
     width: 100%;
-    padding: 130px;
+    height: 30vh;
+    padding: 30px 0;
     text-align: center;
     background-color: rgb(199, 199, 199, 0.7);
 }
@@ -52,9 +53,20 @@
     opacity: 1
 }
 
-#particle {
+#particles {
     position: absolute;
     width: 10px;
     height: 30px;
     background-color: blue;
+    display: none;
+    animation: spin linear 2000 5s;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
