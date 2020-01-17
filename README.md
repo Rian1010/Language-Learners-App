@@ -17,14 +17,22 @@ heroku login
 - Connect to Github
 git init 
 
-- Add Procfile requirements.txt
+- Add requirements.txt
 sudo pip3 freeze -- local > requirements.txt
 
 - Deployment onto Github
 git add .
 git status
 git commit -m ""
-$ heroku git:remote -a language-learners-app
-git push -u origin master
+git push heroku master
+heroku git:remote -a language-learners-app
+
+- Add Procfile 
+echo web: python app.py > Procfile
+git add .
+git commit -m "Added Procfile"
+git push heroku master
+
+heroku ps:scale web=1
 
 
