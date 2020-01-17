@@ -3,7 +3,7 @@
     height: 70vh;
     margin-top: 56px;
     color: white;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(0,0,0, 0.2), rgba(255, 255, 255, 0.3)), url(./images/homepage-bg.jpg);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.3)), url(./images/homepage-bg.jpg);
     background-size: cover;
     background-attachment: fixed;
     text-align: center;
@@ -11,8 +11,47 @@
     align-items: center;
 }
 
-.HP-BG-Sec2 {
+.HP-BG-white-sec {
     width: 100%;
     padding: 80px;
     text-align: center;
+}
+
+.HP-BG-blue-sec {
+    width: 100%;
+    padding: 80px;
+    text-align: center;
+    background-color: rgb(74, 187, 231);
+}
+
+.HP-BG-grey-sec {
+    width: 100%;
+    padding: 130px;
+    text-align: center;
+    background-color: rgb(199, 199, 199, 0.7);
+}
+
+.white-text {
+    color: white;
+}
+
+.learn-box {
+    width: 100%;
+    padding: 100px;
+    margin-top: 30px;
+    color: white;
+    opacity: 0.9;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(./images/homepage-bg.jpg);
+    display: flex;
+    justify-content: center;
+}
+
+.learn-box:hover {
+    transition: opacity 0.2s linear;
+    opacity: 1
+}
+
+#particle {
+    width: "5px";
+    height: "10px";
 }
