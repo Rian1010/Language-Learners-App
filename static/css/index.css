@@ -13,13 +13,14 @@
 
 .HP-BG-white-sec {
     width: 100%;
-    padding: 80px;
+    padding: 80px 0;
     text-align: center;
 }
 
 .HP-BG-blue-sec {
     width: 100%;
-    padding: 80px;
+    padding: 80px 0;
+    color: white;
     text-align: center;
     background-color: rgb(74, 187, 231);
 }
@@ -30,26 +31,37 @@
     height: 30vh;
     padding: 30px 0;
     text-align: center;
-    background-color: rgb(199, 199, 199, 0.7);
+    background-color: #f7f7f7;
+}
+
+.heading-margin {
+    margin-bottom: 30px;
 }
 
 .white-text {
     color: white;
 }
 
+.learn-box-wrap{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
 .learn-box {
     width: 100%;
     padding: 100px;
-    margin-top: 30px;
     color: white;
     opacity: 0.9;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(../images/homepage-bg.jpg);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url(../images/homepage-bg.jpg);
     display: flex;
     justify-content: center;
 }
 
 .learn-box:hover {
-    transition: opacity 0.2s linear;
+    transform: scale(1.1);
+    
+    transition: 0.2s linear;
     opacity: 1
 }
 
@@ -57,7 +69,6 @@
     position: absolute;
     width: 10px;
     height: 30px;
-    background-color: blue;
     display: none;
     animation: spin linear 2000 5s;
 }

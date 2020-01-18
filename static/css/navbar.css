@@ -1,0 +1,31 @@
+.navbrand-style {
+    color: white!important;
+}
+
+.navbrand-style:hover {
+    color: turquoise!important;
+    transition: .5s;
+}
+
+.nav-link {
+    color: white!important;
+}
+
+/* .nav-link:hover {
+    background-color: turquoise;
+    transition: .5s;
+} */
+
+.navbar-nav {
+    flex-direction: row;
+  }
+
+  .nav-link {
+    padding-right: .5rem !important;
+    padding-left: .5rem !important;
+  }
+
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+  }
