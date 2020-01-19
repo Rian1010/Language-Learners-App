@@ -37,3 +37,15 @@ heroku ps:scale web=1
 
 - Images on index.html
 [Pixabay](https://pixabay.com/photos/notebook-workplace-desk-iphone-336634/)
+[Pixabay](https://pixabay.com/de/photos/code-javascript-programmieren-3337044/)
+[pxhere](https://pxhere.com/en/photo/1446103)
+[pxhere](https://pxhere.com/en/photo/1366348)
+[pxhere](https://pxhere.com/en/photo/860609)
+[pxhere](https://pixabay.com/de/photos/sch%C3%BCler-eingabe-tastatur-text-849825/)
+[pxhere](https://pxhere.com/en/photo/1434873)
+[pxhere](https://pxhere.com/en/photo/1435021)
+[Pixabay](https://pixabay.com/de/illustrations/netz-netzwerk-programmierung-3706562/)
+[pxhere](https://pxhere.com/en/photo/693080)
+
+planner
+[Pixabay](https://pixabay.com/de/photos/routenplaner-2019-jahr-kalender-3820633/)

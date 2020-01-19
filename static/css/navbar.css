@@ -9,12 +9,9 @@
 
 .nav-link {
     color: white!important;
+    border-radius: 20px;
+    float: right;
 }
-
-/* .nav-link:hover {
-    background-color: turquoise;
-    transition: .5s;
-} */
 
 .navbar-nav {
     flex-direction: row;

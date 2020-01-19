@@ -1,0 +1,12 @@
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-link {
+    color: white;
+}
+
+.footer-link:hover {
+    color: white;
+}
