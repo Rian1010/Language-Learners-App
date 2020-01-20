@@ -21,6 +21,10 @@ def get_all_messages():
 def index():
     return render_template('index.html')
 
+@app.route('/basics_lesson')
+def basics_lesson():
+    return render_template('basics-lesson.html')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def Search():
