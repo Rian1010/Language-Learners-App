@@ -1,7 +1,7 @@
 let particlesSection = document.getElementById('hp-section4');
 let particles = document.querySelectorAll('.particles');
 let sectionHeight = particlesSection.clientHeight;
-let sectionWidth = particlesSection.clientWidth;
+let sectionWidth = particlesSection.clientWidth-10;
 const colours = ['blue', 'orange', 'green', 'yellow', 'purple', 'pink', 'black', 'turquoise', 'red'];
 
 
@@ -20,13 +20,9 @@ particles.forEach(particle => {
         particle.style.right = currentRight + "px";
         particle.style.animationDuration = animationSpeed + "s";
         if (currentRight >= sectionWidth) {
-            currentRight = 0;
+            currentRight = 10;
         } else {
-            if (currentTop % 2 === 0) {
-                currentRight--;
-            } else {
-                currentRight++;
-            }
+            currentRight++;
         }
     }
 });
