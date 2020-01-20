@@ -7,7 +7,7 @@ const colours = ['blue', 'orange', 'green', 'yellow', 'purple', 'pink', 'black',
 
 particles.forEach(particle => {
     let randomInterval = Math.floor((Math.random() * 10)) + 1;
-    let currentTop = Math.floor(Math.random() * sectionHeight) / 2;
+    let currentTop = Math.floor(Math.random() * sectionHeight) / 1.2;
     let currentRight = Math.floor(Math.random() * sectionWidth) + 1;
     let colourPicker = Math.floor(Math.random() * colours.length);
     let animationSpeed = (Math.random() * 1) + 1;
