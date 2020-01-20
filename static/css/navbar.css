@@ -1,8 +1,8 @@
-.navbrand-style {
+.navbrand-white {
     color: white!important;
 }
 
-.navbrand-style:hover {
+.navbrand-white:hover {
     color: turquoise!important;
     transition: .5s;
 }
@@ -10,19 +10,9 @@
 .nav-link {
     color: white!important;
     border-radius: 20px;
-    float: right;
+    transition: background-color .2s linear;
 }
 
-.navbar-nav {
-    flex-direction: row;
-  }
-
-  .nav-link {
-    padding-right: .5rem !important;
-    padding-left: .5rem !important;
-  }
-
-.ml-auto .dropdown-menu {
-    left: auto !important;
-    right: 0px;
-  }
+.nav-link:hover {
+  background-color: turquoise;
+}

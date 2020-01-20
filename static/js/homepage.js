@@ -9,8 +9,9 @@ let sectionwWidth = particlesSection.offsetWidth;
 
 let timeOut = 1000;
 setTimeout(function () {
-    let travellingTime = setInterval(moveParticle, Math.floor(Math.random()));
-    console.log(travellingTime);
+    let randomInterval = Math.floor((Math.random() * 10)) + 1;
+    console.log(randomInterval);
+    let travellingTime = setInterval(moveParticle, randomInterval);
 
     function moveParticle() {
         
@@ -24,7 +25,6 @@ setTimeout(function () {
                 particles[i].style.position = "absolute";
                 particles[i].style.display = "inline-block";
                 particles[i].style.right = pos + "px";
-                particles[i].style.top = randomTop + "px";
             }
         }
     }
