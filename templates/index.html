@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<section class="banner-pic-HP" id="hp-section1">
+<section class="banner-pic" id="hp-section1">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -19,74 +19,72 @@
 		<div class="row">
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-1">
-						<a href="{{ url_for('basics_lesson') }}">
-							<div>
-								<h3>Lesson 1: Basics</h3>
-								<p>Data Types, Variables and Operators</p>
-							</div>
-						</a>
-					</div>
+					<a href="{{ url_for('lesson_one') }}" class="box-image-1">
+						<div>
+							<h3>Lesson 1: Basics</h3>
+							<p>Data Types, Variables and Operators</p>
+						</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-2">
+					<a href="{{ url_for('lesson_two') }}" class="box-image-2">
 						<div>
 							<h3>Lesson 2: Loops and Contionals</h3>
 							<p>If, else and switch statements and for, while and do & while loops</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-3">
+					<a href="{{ url_for('lesson_three') }}" class="box-image-3">
 						<div>
 							<h3>Lesson 3: Functions</h3>
 							<p>Functions, Parameters, Return</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-4">
+					<a href="{{ url_for('lesson_four') }}" class="box-image-4">
 						<div>
 							<h3>Lesson 4: Objects</h3>
 							<p>Methods and Creating Objects</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-5">
+					<a href="{{ url_for('lesson_five') }}" class="box-image-5">
 						<div>
 							<h3>Lesson 5: Arrays</h3>
 							<p>Arrays, Math Object and Date Object</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-6">
+					<a href="{{ url_for('lesson_six') }}" class="box-image-6">
 						<div>
 							<h3>Lesson 6: Using the DOM</h3>
 							<p>Selection, Manipulation, Event Handling and Animations</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-12">
 				<div class="box-wrapper-overflow">
-					<div class="box-image-7">
+					<a href="{{ url_for('advanced_lesson') }}" class="box-image-7">
 						<div>
 							<h3>Advanced Learning</h3>
 							<p>Classes, Calculator, Translate a Website and More!</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</div>

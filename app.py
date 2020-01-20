@@ -21,9 +21,33 @@ def get_all_messages():
 def index():
     return render_template('index.html')
 
-@app.route('/basics_lesson')
-def basics_lesson():
-    return render_template('basics-lesson.html')
+@app.route('/lesson_one')
+def lesson_one():
+    return render_template('lesson-one.html')
+
+@app.route('/lesson_two')
+def lesson_two():
+    return render_template('lesson-two.html')
+
+@app.route('/lesson_three')
+def lesson_three():
+    return render_template('lesson-three.html')
+
+@app.route('/lesson_four')
+def lesson_four():
+    return render_template('lesson-four.html')
+
+@app.route('/lesson_five')
+def lesson_five():
+    return render_template('lesson-five.html')
+
+@app.route('/lesson_six')
+def lesson_six():
+    return render_template('lesson-six.html')
+
+@app.route('/advanced_lesson')
+def advanced_lesson():
+    return render_template('advanced-lesson.html')
 
 
 @app.route('/', methods=['GET', 'POST'])
