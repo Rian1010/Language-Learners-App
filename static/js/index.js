@@ -9,11 +9,13 @@ let sectionwWidth = particlesSection.offsetWidth;
 
 let timeOut = 1000;
 setTimeout(function () {
-    let travellingTime = setInterval(moveParticle, Math.floor(Math.random() * 10 + 10))
+    let travellingTime = setInterval(moveParticle, Math.floor(Math.random()));
     console.log(travellingTime);
 
     function moveParticle() {
+        
         for (let i = 0; i < particles.length; i++) {
+            let randomTop = Math.floor(Math.random() * 10);
             if (pos >= sectionwWidth) {
                 pos = 0;
             } else {
@@ -21,8 +23,8 @@ setTimeout(function () {
                 particles[i].style.backgroundColor = colours[colourPicker];
                 particles[i].style.position = "absolute";
                 particles[i].style.display = "inline-block";
-                particles[i].style.right = pos + "px"
-                particles[i].style.top = "10px";
+                particles[i].style.right = pos + "px";
+                particles[i].style.top = randomTop + "px";
             }
         }
     }
