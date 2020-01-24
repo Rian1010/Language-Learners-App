@@ -11,6 +11,7 @@
     color: white!important;
     border-radius: 20px;
     transition: background-color .2s linear;
+    text-align: center;
 }
 
 .nav-link:hover {
