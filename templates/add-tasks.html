@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-sm navbar-light bg-info">
+	<a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
+
+	<button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
+		aria-expanded="navbarNavDropdown" aria-controls="false">
+
+		<span class="navbar-toggler-icon"></span></button>
+
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a href="index.html" class="nav-link">Home</a>
+			</li>
+			<li class="nav-item">
+				<a href="index.html#hp-section2" class="nav-link">Start Learning</a>
+			</li>
+			<li class="nav-item">
+				<a href="index.html#hp-section3" class="nav-link">Planner</a>
+			</li>
+			<li class="nav-item">
+				<a href="index.html#hp-section5" class="nav-link">Community</a>
+			</li>
+			<li class="nav-item">
+				<a href="index.html#hp-section6" class="nav-link">Chat With Us</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center heading-margin">
+                <h1>Add New Tasks</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <form action="" method="POST" class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <select name="lesson" id="lesson_name">
+                            {% for les in lesson %}
+                                <option value="{{les.lesson_name}}" disabled selected>Choose Lesson</option>
+                            {% endfor %}
+                        </select>
+                        <input id="lesson_name" name="lesson_name" type="text" placeholder="Lesson Name" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <input id="task_name" name="task_name" type="text" placeholder="Task Name" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <textarea id="task_description" name="task_description" type="text" placeholder="Description" required ></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <input id="due_date" name="due_date" type="text" placeholder="Due Date" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

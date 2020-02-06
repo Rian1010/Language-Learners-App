@@ -1,5 +1,12 @@
 # Third Milestone Project
 
+### Python Chat
+The Python codes for the chat are the same as in the lessons of Code Institute. Click [here]() to find the link.
+
+## Connection Python to MongoDB
+- sudo pip3 install flask-pymongo
+- sudo pip3 install dnspython
+
 ## How to Install Flask
 - sudo pip3 install flask
 
