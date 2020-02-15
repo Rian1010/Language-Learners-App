@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center heading-margin">
-                <h1>Add New Tasks</h1>
+                <h1>Edit Task</h1>
             </div>
         </div>
     </div>
@@ -51,7 +51,10 @@
                             <select name="lesson" id="lesson_name">
                                 <option value="" disabled selected>Choose Lesson</option>
                                 {% for les in lesson %}
-                                <option value="{{les.lesson_name}}">{{les.lesson_name}}</option>
+                                    {% if les.lesson_name == task.lesson_name %}
+                                        <option value="{{les.lesson_name}}" selected>{{les.lesson_name}}</option>
+                                    {% else %}
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>

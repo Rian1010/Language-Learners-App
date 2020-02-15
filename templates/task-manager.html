@@ -44,17 +44,35 @@
 <section>
 	<div class="container">
 		<div class="row">
+			{{ result }}
+			{% for task in tasks %}
 			<div class="col-12 col-md-6 col-xl-4">
 				<div class="task-box text-center">
-					{{ result }}
-					{% for task in tasks %}
-						<h2>{{task.lesson_name}}</h2>
-						<h3>{{task.task_name}}</h3>
-						<p>{{task.task_description}}</p>
-						<p>{{task.due_date}}</p>
-					{% endfor %}
+
+					<h2>{{task.lesson_name}}</h2>
+					<h3>{{task.task_name}}</h3>
+					<p>{{task.task_description}}</p>
+					<p>{{task.due_date}}</p>
+					<div class="row">
+						<div class="col-6">
+							<button class="btn btn-success" type="submit" name="action">Done
+								<i class="fa fa-check" aria-hidden="true"></i>
+							</button>
+						</div>
+
+						<div class="col-6">
+							<a href="{{ url_for('edit_task', task_id=task._id) }}">
+								<button class="btn btn-info" type="submit" name="action">Edit
+									<i class="fa fa-edit" aria-hidden="true"></i>
+								</button>
+							</a>
+						</div>
+
+					</div>
+
 				</div>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 </section>
