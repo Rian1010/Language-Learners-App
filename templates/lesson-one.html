@@ -1,33 +1,33 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block navbar %}
 <nav class="navbar navbar-expand-sm navbar-light bg-info fixed-top">
-	<a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
+    <a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
 
-	<button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
-		aria-expanded="navbarNavDropdown" aria-controls="false">
+    <button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-expanded="navbarNavDropdown" aria-controls="false">
 
-		<span class="navbar-toggler-icon"></span></button>
+        <span class="navbar-toggler-icon"></span></button>
 
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a href="index.html" class="nav-link">Home</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section2" class="nav-link">Start Learning</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section3" class="nav-link">Planner</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section5" class="nav-link">Community</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section6" class="nav-link">Chat With Us</a>
-			</li>
-		</ul>
-	</div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section2" class="nav-link">Start Learning</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section3" class="nav-link">Planner</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section5" class="nav-link">Community</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section6" class="nav-link">Chat With Us</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 {% endblock %}
 
@@ -51,15 +51,24 @@
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>One can define a values through the following three terms:</p>
+                    <ul>
+                        <li>var</li>
+                        <li>let</li>
+                        <li>const</li>
+                    </ul>
+                    <p>For example, one could write:</p>
+                    <p>var x = 10;</p>
+                    <p>var y = 5;</p>
+                    <p>var z = x + y</p>
+                    <p>In this example, z is equal to 15, as it is the result of 10 plus 5.</p>
+                    <p>In order to display the z variable in the console of Google Chrome, use console.log, as in
+                        console.log(z) and 15 should be shown in the console.</p>
+
+                    <p>Nowadays, let is used more often instead of var and const is only used, if one wants a value to
+                        stay the same.</p>
+
+                    <p>Also, please note that a semicolon (;) is usually included at the end of each line.</p>
                 </div>
             </div>
         </div>
@@ -76,21 +85,39 @@
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>In JavaScript, there are many multiple data types, such as strings, array, objects, numbers and
+                        booleans.
+                        Here are some examples:</p>
+                    <ul>
+                        <li>let theString = "This is a string";</li>
+                        <li>let theArray = ["This", "is", "a", "list", "of", "words"];</li>
+                        <li>let theObject = {device: "Mobile Phone", companyName = "Samsung", version = "Galaxy S8"};
+                        </li>
+                        <li>let theNumber = 63 / 3;</li>
+                        <li>let theTrueBoolean = True;</li>
+                        <li>let theFalseBoolean = False;</li>
+                    </ul>
+                    <p>As it is shown above, a string is a text in quotation marks, whereas an array is a list of
+                        things, which can be letters, numbers or symbols.</p>
+                    <p>The object has pairs that have a name and a value and they are all wrapped in curly brackets
+                        ({}). The values could be targetted as in the following example:</p>
+                    <p>console.log("The " + theObject.device + " is a " + theObject.companyName + " " +
+                        theObject.version;)</p>
+                    <p>A boolean can either be true or false. For instance, if the following two variables were
+                        compared:</p>
+                    <ul>
+                        <li>let theNumber = 63 / 3;</li>
+                        <li>let theOtherNumber = 24 - 3;</li>
+                        <li>(theNumber == theOtherNumber)</li>
+                    </ul>
+                    <p>In the example above, (theNumber == theOtherNumber) would return true because both variables are
+                        equal to 21, but if they would result in different numbers, it would return false.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <section class="white-section">
     <div class="container">
         <div class="row">
@@ -101,14 +128,20 @@
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil
+                        perspiciatis expedita eligendi
+                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas
+                        aliquam?</p>
                     <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil
+                        perspiciatis expedita eligendi
+                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas
+                        aliquam?</p>
                     <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil
+                        perspiciatis expedita eligendi
+                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas
+                        aliquam?</p>
                     <p>Lorem ipsum dolor sit amet.</p>
                 </div>
             </div>

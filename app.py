@@ -34,6 +34,10 @@ def edit_task(task_id):
     all_categories = mongo.db.categories.find()
     return render_template('edit-task.html', task=the_task, categories=all_categories)
 
+@app.route('/community')
+def community():
+    return render_template('community.html', posts=mongo.db.posts.find())
+
 @app.route('/lesson_one')
 def lesson_one():
     return render_template('lesson-one.html')
