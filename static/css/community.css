@@ -1,0 +1,15 @@
+.community-box {
+    width: 100%;
+    height: auto;
+    border: solid 1px;
+    padding: 40px;
+    margin: 0px 0px 70px;
+}
+
+.flex-row {
+    margin: 0 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+

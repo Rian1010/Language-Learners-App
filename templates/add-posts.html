@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center heading-margin">
-                <h1>Edit Task</h1>
+                <h1>Add New Post</h1>
             </div>
         </div>
     </div>
@@ -45,17 +45,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ url_for('insert_task') }}" method="POST" class="col-12 task-box text-center">
+                <form action="{{ url_for('insert_post') }}" method="POST" class="col-12 task-box text-center">
                     <div class="row">
                         <div class="col-12">
                             <select name="lesson_name" id="lesson_name">
                                 <option value="" disabled selected>Choose Lesson</option>
                                 {% for lesson in lessons %}
-                                {% if lesson.lesson_name == task.lesson_name %}
-                                <option value="{{lesson.lesson_name}}" selected>{{task.lesson_name}}</option>
-                                {% else %}
-                                <option value="{{lesson.lesson_name}}">{{lesson.lesson_name}}</option>
-                                {% endif %}
+                                <option value="{{ lesson.lesson_name }}">{{ lesson.lesson_name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -63,28 +59,14 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <input id="task_name" name="task_name" type="text" value="{{task.task_name}}"
-                                placeholder="Task Name" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <textarea id="task_description" name="task_description" type="text"
-                                placeholder="Description" required>{{task.task_description}}</textarea>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <input id="due_date" name="due_date" type="text" value="{{task.due_date}}"
-                                placeholder="Due Date" required>
+                            <textarea id="post_content" name="post_content" type="text"
+                                placeholder="Post Content" required></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button class="btn btn-info" type="submit" name="action">Add New Task
+                            <button class="btn btn-info" type="submit" name="action">Add New Post
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </div>

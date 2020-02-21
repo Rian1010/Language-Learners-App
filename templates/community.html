@@ -1,4 +1,4 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block navbar %}
 <nav class="navbar navbar-expand-sm navbar-light bg-info">
@@ -43,15 +43,66 @@
 </section>
 
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="task-box text-center">
-                    
-                </div>
+	<div class="container">
+		{% for post in posts %}
+		<div class="row">
+			<div class="col-12">
+				<div class="community-box text-center">
 
-            </div>
-        </div>
-    </div>
+					<div class="d-none d-sm-block">
+						<div class="flex-row">
+							<h5>{{ post.username }}</h5>
+							<h5>{{ post.email }}</h5>
+						</div>
+					</div>
+
+					<div class="d-block d-sm-none">
+						<h5>{{ post.username }}</h5>
+						<h5>{{ post.email }}</h5>
+					</div>
+
+					<h4>Topic: {{ post.lesson_name }}</h4>
+
+					<p>{{ post.post_content }}</p>
+					<div class="row">
+
+						<div class="col-4">
+							<a href="{{ url_for('delete_post', post_id=post._id) }}">
+								<button class="btn btn-danger" type="submit" name="action">Delete
+									<i class="fa fa-minus-square" aria-hidden="true"></i>
+								</button>
+							</a>
+						</div>
+
+						<div class="col-4">
+							<a href="{{ url_for('edit_post', post_id=post._id) }}">
+								<button class="btn btn-info" type="submit" name="action">Edit
+									<i class="fa fa-edit" aria-hidden="true"></i>
+								</button>
+							</a>
+						</div>
+
+						<div class="col-4">
+							<button class="btn btn-success" type="submit" name="action">Done
+								<i class="fa fa-check" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		<div class="row">
+			<div class="col-12 offset-md-6 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
+				<a href="{{ url_for('add_posts') }}" class="add-task-btn">
+					<div class="plus-sign-add-task">
+						<p>+</p>
+					</div>
+
+				</a>
+			</div>
+		</div>
+	</div>
 </section>
 {% endblock %}

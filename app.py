@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'myFirstCluster'
-app.config["MONGO_URI"] = 'mongodb+srv://Rian:j4JWQ1Ntzc9u0U7m@myfirstcluster-ges2b.mongodb.net/task_manager?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE'
+app.config["MONGO_URI"] = 'mongodb+srv://Rian:j4JWQ1Ntzc9u0U7m@myfirstcluster-ges2b.mongodb.net/learner-app-data?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE'
 
 mongo = PyMongo(app)
 
@@ -20,7 +20,7 @@ def task_manager():
 
 @app.route('/add_tasks')
 def add_tasks():
-    return render_template('add-tasks.html', lesson=mongo.db.lesson.find(), task=mongo.db.task.find())
+    return render_template('add-tasks.html', lessons=mongo.db.lessons.find(), task=mongo.db.task.find())
 
 @app.route('/insert_task', methods=['POST'])
 def insert_task():
@@ -32,11 +32,37 @@ def insert_task():
 def edit_task(task_id):
     the_task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
     all_categories = mongo.db.categories.find()
-    return render_template('edit-task.html', task=the_task, categories=all_categories)
+    return render_template('edit-task.html', task=the_task, lessons=mongo.db.lessons.find(), categories=all_categories)
+
+@app.route('/delete_task/<task_id>')
+def delete_task(task_id):
+    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
+    return redirect(url_for('task_manager'))
 
 @app.route('/community')
 def community():
-    return render_template('community.html', posts=mongo.db.posts.find())
+     posts = mongo.db.posts.find()
+     return render_template('community.html', posts=posts, lesson=mongo.db.lessons.find())
+
+@app.route('/add_posts')
+def add_posts():
+    return render_template('add-posts.html', posts=mongo.db.posts.find(), lessons=mongo.db.lessons.find())
+
+@app.route('/insert_post', methods=['POST'])
+def insert_post():
+    posts = mongo.db.posts
+    posts.insert_one(request.form.to_dict())
+    return redirect(url_for('community'))
+
+@app.route('/edit_post/<post_id>')
+def edit_post(post_id):
+    the_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    return render_template('edit-post.html', posts=the_post, lessons=mongo.db.lessons.find())
+
+@app.route('/delete_post/<post_id>')
+def delete_post(post_id):
+    mongo.db.posts.remove({"_id": ObjectId(post_id)})
+    return redirect(url_for('community'))
 
 @app.route('/lesson_one')
 def lesson_one():

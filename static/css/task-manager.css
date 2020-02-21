@@ -2,8 +2,55 @@
     width: 100%;
     height: 400px;
     border: solid 1px;
+    padding: 10px;
     margin: 0px 0 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.circle {
+    width: 290px;
+    height: 300px;
+    background-color: lightgreen;
+    border-radius: 50%;
+    padding: 0;
+    transition: .2s linear;
+}
+
+.circle:hover {
+    background-color: rgb(129, 238, 129);
+    text-decoration: none;
+}
+
+.add-task-btn {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.add-task-btn {
+    border-radius: 50%;
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+
+.plus-sign-add-task {
+    width: 100%;
+    height: 300px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 300px;
+    transition: .2s linear;
+    position: absolute;
+    bottom: 7%;
 }
