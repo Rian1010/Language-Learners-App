@@ -48,12 +48,17 @@ def community():
 def add_posts():
     return render_template('add-posts.html', posts=mongo.db.posts.find(), lessons=mongo.db.lessons.find())
 
-@app.route('/insert_post', methods=['POST'])
-def insert_post():
+@app.route('/insert_post/<post_id>', methods=['POST'])
+def insert_post(post_id):
     posts = mongo.db.posts
-    posts.insert_one(request.form.to_dict())
+    posts.update({'_id': ObjectId(post_id)},
+    {
+        'lesson_name':request.form.get('lesson_name'),
+        'post_content':request.form.get('post_content'),
+    }
+    )
     return redirect(url_for('community'))
-
+    
 @app.route('/edit_post/<post_id>')
 def edit_post(post_id):
     the_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})

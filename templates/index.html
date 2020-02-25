@@ -180,10 +180,35 @@
 				<h2>Chat with Us!</h2>
 			</div>
 			<!-- This form code below just serves as a placeholder for now -->
-			<div class="col-12">
-				<form action="">
-					<textarea name="text" id="text" cols="10" rows="10"></textarea>
-				</form>
+			<div class="row">
+				<div class="col-12">
+					<div class="contactMe" id="contact_me">
+						<form>
+							<div class="row">
+								<div class="">
+									<input type="text" name="name" id="name" class="form-control text-box-length" placeholder="Name" maxlength="20" required />
+								</div>
+							</div>
+							<div class="row">
+								<div class="">
+									<input type="email" name="email" id="email" class="form-control text-box-length" placeholder="Email Address" required />
+								</div>
+							</div>
+							<div class="row">
+								<div class="">
+									<textarea name="Message" id="contactMessage" class="form-control text-box-length" placeholder="Please Enter A Message" rows="5" required></textarea>
+								</div>
+							</div>
+						</form>
+						<div class="container">
+							<div class="row">
+								<div class="">
+									<input type="submit" value="Submit" id="submitBtn" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

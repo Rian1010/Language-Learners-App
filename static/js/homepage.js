@@ -33,7 +33,6 @@ $(document).ready(function () {
     });
 });
 
-
 // let particlesSection = document.getElementById('hp-section5');
 // let particles = document.querySelectorAll('.particles');
 // let particlesID = document.getElementById('particles')

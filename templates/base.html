@@ -11,6 +11,14 @@
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+
+	<!--EmailJS-->
+	<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+	<script>
+		(function() {
+            emailjs.init("user_jBNHynPWhUv5jwDizH0QT");
+        })();
+	</script>
 	<title>Document</title>
 
 </head>
