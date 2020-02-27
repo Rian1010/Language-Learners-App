@@ -48,8 +48,8 @@ def community():
 def add_posts():
     return render_template('add-posts.html', posts=mongo.db.posts.find(), lessons=mongo.db.lessons.find())
 
-@app.route('/insert_post/<post_id>', methods=['POST'])
-def insert_post(post_id):
+@app.route('/update_post/<post_id>', methods=['POST'])
+def update_post(post_id):
     posts = mongo.db.posts
     posts.update({'_id': ObjectId(post_id)},
     {
@@ -57,6 +57,12 @@ def insert_post(post_id):
         'post_content':request.form.get('post_content'),
     }
     )
+    return redirect(url_for('community'))
+
+@app.route('/insert_post', methods=['POST'])
+def insert_post():
+    posts = mongo.db.posts
+    posts.insert_one(request.form.to_dict())
     return redirect(url_for('community'))
     
 @app.route('/edit_post/<post_id>')
@@ -71,7 +77,39 @@ def delete_post(post_id):
 
 @app.route('/lesson_one')
 def lesson_one():
-    return render_template('lesson-one.html')
+    add_lesson1 = mongo.db.addLesson1.find()
+    return render_template('lesson-one.html', add_lesson1=add_lesson1)
+
+@app.route('/add_new_lesson1')
+def add_new_lesson1():
+    return render_template('add-lesson-1.html', add_lesson1=mongo.db.addLesson1.find())
+
+@app.route('/update_lesson1/<addLesson1_id>', methods=['POST'])
+def update_lesson1(addLesson1_id):
+    add_lesson1 = mongo.db.addLesson1
+    add_lesson1.update({'_id': ObjectId(addLesson1_id)},
+    {
+        'email1':request.form.get('email1'),
+        'lesson1_content':request.form.get('lesson1_content'),
+    }
+    )
+    return redirect(url_for('lesson_one'))
+
+@app.route('/insert_lesson1', methods=['POST'])
+def insert_lesson1():
+    add_lesson1 = mongo.db.addLesson1
+    add_lesson1.insert_one(request.form.to_dict())
+    return redirect(url_for('lesson_one'))
+    
+@app.route('/edit_lesson1/<addLesson1_id>')
+def edit_lesson1(addLesson1_id):
+    add_lesson1 = mongo.db.addLesson1.find_one({"_id": ObjectId(addLesson1_id)})
+    return render_template('edit-lesson1.html', add_lesson1=add_lesson1)
+
+@app.route('/delete_lesson1/<addLesson1_id>')
+def delete_lesson1(addLesson1_id):
+    mongo.db.addLesson1.remove({"_id": ObjectId(addLesson1_id)})
+    return redirect(url_for('lesson_one'))
 
 @app.route('/lesson_two')
 def lesson_two():
