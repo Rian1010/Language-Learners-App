@@ -46,10 +46,16 @@
         <div class="row">
             <div class="col-12">
                 <form action="{{ url_for('insert_lesson1') }}" method="POST" class="col-12 task-box text-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <textarea id="heading1" name="heading1" type="text"
+                                placeholder="Lesson Heading" required></textarea>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-12">
-                            <textarea id="email1" name="email1" type="text"
+                            <textarea id="email1" name="email1" type="email"
                                 placeholder="Email Address" required></textarea>
                         </div>
                     </div>

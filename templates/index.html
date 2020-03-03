@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block navbar %}
 <nav class="navbar navbar-expand-sm navbar-light bg-info fixed-top">
 	<a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
@@ -182,29 +182,24 @@
 			<!-- This form code below just serves as a placeholder for now -->
 			<div class="row">
 				<div class="col-12">
-					<div class="contactMe" id="contact_me">
+					<div class="contactMe" id="message_response">
 						<form>
 							<div class="row">
-								<div class="">
-									<input type="text" name="name" id="name" class="form-control text-box-length" placeholder="Name" maxlength="20" required />
-								</div>
+								<input type="text" name="name" id="name" class="form-control text-box-length"
+									placeholder="Name" maxlength="20" required />
 							</div>
 							<div class="row">
-								<div class="">
-									<input type="email" name="email" id="email" class="form-control text-box-length" placeholder="Email Address" required />
-								</div>
+								<input type="email" name="email" id="email" class="form-control text-box-length"
+									placeholder="Email Address" required />
 							</div>
 							<div class="row">
-								<div class="">
-									<textarea name="Message" id="contactMessage" class="form-control text-box-length" placeholder="Please Enter A Message" rows="5" required></textarea>
-								</div>
+								<textarea name="Message" id="message" class="form-control text-box-length"
+									placeholder="Please Enter A Message" rows="5" required></textarea>
 							</div>
 						</form>
 						<div class="container">
 							<div class="row">
-								<div class="">
-									<input type="submit" value="Submit" id="submitBtn" />
-								</div>
+								<input type="submit" value="Submit" id="submit" />
 							</div>
 						</div>
 					</div>

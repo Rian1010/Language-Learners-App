@@ -10,3 +10,11 @@
 .footer-link:hover {
     color: white;
 }
+
+.footer-style {
+    width: 100%;
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+    background-color: #17a2b8;
+}

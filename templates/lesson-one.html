@@ -146,16 +146,98 @@
                 </div>
             </div>
         </div>
+</section>
+
+<section>
+    <div class="container">
         <div class="row">
 			<div class="col-12 offset-md-6 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
 				<a href="{{ url_for('add_new_lesson1') }}" class="add-task-btn">
 					<div class="plus-sign-add-task">
 						<p>+</p>
 					</div>
-
 				</a>
 			</div>
 		</div>
     </div>
 </section>
+{% for info in add_lesson1 %}
+{% if loop.index % 2 != 0 %}
+<section class="blue-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 heading-margin">
+                <h2>{{ info.heading1 }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="grey-background-box">
+                    
+                    <p>{{ info.email1 }}</p>
+                    <p>{{ info.lesson1_content}}</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <a href="{{ url_for('delete_lesson1', addLesson1_id=info._id) }}">
+                    <button class="btn btn-danger" type="submit" name="action">Delete
+                        <i class="fa fa-minus-square" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+
+            <div class="col-6">
+                <a href="{{ url_for('edit_lesson1', addLesson1_id=info._id) }}">
+                    <button class="btn btn-info" type="submit" name="action">Edit
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="white-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 heading-margin">
+                <h2>{{ info.heading1 }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="grey-background-box">
+                    
+                    <p>{{ info.email1 }}</p>
+                    <p>{{ info.lesson1_content}}</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <a href="{{ url_for('delete_lesson1', addLesson1_id=info._id) }}">
+                    <button class="btn btn-danger" type="submit" name="action">Delete
+                        <i class="fa fa-minus-square" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+
+            <div class="col-6">
+                <a href="{{ url_for('edit_lesson1', addLesson1_id=info._id) }}">
+                    <button class="btn btn-info" type="submit" name="action">Edit
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %} 
+{% endfor %}
 {% endblock %}
