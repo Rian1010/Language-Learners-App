@@ -120,10 +120,9 @@ def insert_lesson1():
 
 
 @app.route('/edit_lesson1/<addLesson1_id>')
-def edit_lesson1(addLesson1_id):
-    add_lesson1 = mongo.db.addLesson1.find_one(
-        {"_id": ObjectId(addLesson1_id)})
-    return render_template('edit-lesson-1.html', add_lesson1=add_lesson1)
+def edit_lesson1(addLesson1):
+    #addLesson1 = mongo.db.add_lesson1.find_one({"_id": ObjectId(addLesson1_id)})
+    return render_template('edit-lesson-1.html', addLesson1=addLesson1)
 
 
 @app.route('/delete_lesson1/<addLesson1_id>')
