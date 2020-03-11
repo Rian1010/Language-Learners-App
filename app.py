@@ -1,20 +1,50 @@
 import os
+import bcrypt
 from datetime import datetime
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template')
+
 app.config["MONGO_DBNAME"] = 'myFirstCluster'
 app.config["MONGO_URI"] = 'mongodb+srv://Rian:j4JWQ1Ntzc9u0U7m@myfirstcluster-ges2b.mongodb.net/learner-app-data?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE'
 
 mongo = PyMongo(app)
 
-
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'username' in session:
+        return render_template('index.html')
+    return render_template('login.html')
 
+@app.route('/login', methods=['POST'])
+def login():
+    users = mongo.db.user
+    user_login = users.find_one({'name' : request.form['username']})
+
+    if user_login:
+        if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+    return 'Invalid username or password'
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        user_exists = users.find_one({'name': request.form['username']})
+
+        if user_exists is None:
+            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+
+        return 'The username that you have entered already exists!'
+
+    return render_template('register.html')
 
 @app.route('/task_manager')
 def task_manager():
@@ -88,8 +118,8 @@ def delete_post(post_id):
     return redirect(url_for('community'))
 
 
-@app.route('/lesson_one')
-def lesson_one():
+@app.route('/lesson_one/<addLesson1_id>')
+def lesson_one(addLesson1_id):
     add_lesson1 = mongo.db.addLesson1.find()
     return render_template('lesson-one.html', add_lesson1=add_lesson1)
 
@@ -101,27 +131,28 @@ def add_new_lesson1():
 
 @app.route('/update_lesson1/<addLesson1_id>', methods=['POST'])
 def update_lesson1(addLesson1_id):
-    add_lesson1 = mongo.db.addLesson1
-    add_lesson1.update({'_id': ObjectId(addLesson1_id)},
+    addLesson1 = mongo.db.addLesson1
+    addLesson1.update({'_id': ObjectId(addLesson1_id)},
     {
         'heading1': request.form.get('heading1'),
         'email1': request.form.get('email1'),
         'lesson1_content': request.form.get('lesson1_content'),
     }
     )
-    return redirect(url_for('lesson_one'))
+    print(addLesson1_id)
+    return redirect(url_for('lesson_one', addLesson1=addLesson1 ))
 
 
 @app.route('/insert_lesson1', methods=['POST'])
 def insert_lesson1():
-    add_lesson1 = mongo.db.addLesson1
-    add_lesson1.insert_one(request.form.to_dict())
+    addLesson1 = mongo.db.addLesson1
+    addLesson1.insert_one(request.form.to_dict())
     return redirect(url_for('lesson_one'))
 
 
 @app.route('/edit_lesson1/<addLesson1_id>')
-def edit_lesson1(addLesson1):
-    #addLesson1 = mongo.db.add_lesson1.find_one({"_id": ObjectId(addLesson1_id)})
+def edit_lesson1(addLesson1_id):
+    addLesson1 = mongo.db.add_lesson1.find_one({"_id": ObjectId(addLesson1_id)})
     return render_template('edit-lesson-1.html', addLesson1=addLesson1)
 
 
@@ -162,6 +193,7 @@ def advanced_lesson():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'mysecret'
     app.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
             debug=True)

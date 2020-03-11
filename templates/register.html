@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block navbar %}
+<nav class="navbar navbar-expand-sm navbar-light bg-info fixed-top">
+	<a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
+
+	<button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
+		aria-expanded="navbarNavDropdown" aria-controls="false">
+
+		<span class="navbar-toggler-icon"></span></button>
+
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a href="#hp-section1" class="nav-link">Home</a>
+			</li>
+			<li class="nav-item">
+				<a href="#hp-section2" class="nav-link">Start Learning</a>
+			</li>
+			<li class="nav-item">
+				<a href="#hp-section3" class="nav-link">Planner</a>
+			</li>
+			<li class="nav-item">
+				<a href="#hp-section5" class="nav-link">Community</a>
+			</li>
+			<li class="nav-item">
+				<a href="#hp-section6" class="nav-link">Chat With Us</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <form action="{{ url_for('register') }}" method="POST">
+                        <!-- the form-group class adds fitting margins-->
+                        <div class="form-group">
+                            <label for="">Username</label>
+                            <!-- the form-control class is used to style the text-box -->
+                            <input type="text" name="username" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-groups">
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <div>
+                        <a href="{{ url_for('login') }}">Login Here Now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
