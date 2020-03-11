@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block navbar %}
-<nav class="navbar navbar-expand-sm navbar-light bg-info fixed-top">
+<nav class="navbar navbar-expand-sm navbar-light bg-info">
 	<a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
 
 	<button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -44,9 +44,9 @@
                         </div>
                         <div class="form-groups">
                             <label for="">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input type="password" name="pass" class="form-control" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block">Register Now!</button>
                     </form>
                     <div>
                         <a href="{{ url_for('login') }}">Login Here Now!</a>
