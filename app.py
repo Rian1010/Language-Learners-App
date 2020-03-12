@@ -18,6 +18,10 @@ def index():
         return render_template('index.html')
     return render_template('login.html')
 
+@app.route('/signin')
+def signin():
+    return render_template('login.html')
+
 @app.route('/login', methods=['POST'])
 def login():
     users = mongo.db.user
@@ -38,13 +42,18 @@ def register():
 
         if user_exists is None:
             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name': request.form['username'], 'password': hashpass})
+            users.insert_one({'name': request.form['username'], 'password': hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
 
         return 'The username that you have entered already exists!'
 
     return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect('/signin')
 
 @app.route('/task_manager')
 def task_manager():
