@@ -4,6 +4,7 @@ from datetime import datetime
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask import flash
 
 app = Flask(__name__, template_folder='templates')
 
@@ -12,26 +13,32 @@ app.config["MONGO_URI"] = 'mongodb+srv://Rian:j4JWQ1Ntzc9u0U7m@myfirstcluster-ge
 
 mongo = PyMongo(app)
 
+
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template('index.html')
-    return render_template('login.html')
+        return 'Hi ' + session['username']
+    return render_template('index.html')
+
 
 @app.route('/signin')
 def signin():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
-def login():
-    users = mongo.db.user
-    user_login = users.find_one({'name' : request.form['username']})
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    users = mongo.db.users
+    user_login = users.find_one({'name': request.form['username']})
+    print(user_login)
     if user_login:
         if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
             session['username'] = request.form['username']
-            return redirect(url_for('index'))
-    return 'Invalid username or password'
+            return render_template('index.html')
+    else:
+        flash(f'Invalid username')
+    
+    return render_template('Invalid username or password')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -41,8 +48,10 @@ def register():
         user_exists = users.find_one({'name': request.form['username']})
 
         if user_exists is None:
-            hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert_one({'name': request.form['username'], 'password': hashpass})
+            hashpass = bcrypt.hashpw(
+                request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert_one(
+                {'name': request.form['username'], 'password': hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
 
@@ -50,10 +59,12 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)
     return redirect('/signin')
+
 
 @app.route('/task_manager')
 def task_manager():
@@ -103,8 +114,7 @@ def update_post(post_id):
                  {
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
-    }
-    )
+    })
     return redirect(url_for('community'))
 
 
@@ -142,14 +152,13 @@ def add_new_lesson1():
 def update_lesson1(addLesson1_id):
     addLesson1 = mongo.db.addLesson1
     addLesson1.update({'_id': ObjectId(addLesson1_id)},
-    {
+                      {
         'heading1': request.form.get('heading1'),
         'email1': request.form.get('email1'),
         'lesson1_content': request.form.get('lesson1_content'),
     }
     )
-    print(addLesson1_id)
-    return redirect(url_for('lesson_one', addLesson1=addLesson1 ))
+    return redirect(url_for('lesson_one', addLesson1=addLesson1))
 
 
 @app.route('/insert_lesson1', methods=['POST'])
@@ -161,7 +170,8 @@ def insert_lesson1():
 
 @app.route('/edit_lesson1/<addLesson1_id>')
 def edit_lesson1(addLesson1_id):
-    addLesson1 = mongo.db.add_lesson1.find_one({"_id": ObjectId(addLesson1_id)})
+    addLesson1 = mongo.db.add_lesson1.find_one(
+        {"_id": ObjectId(addLesson1_id)})
     return render_template('edit-lesson-1.html', addLesson1=addLesson1)
 
 
