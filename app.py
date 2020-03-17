@@ -21,24 +21,51 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/signin')
+@app.route('/signin', methods = ["GET", "POST"])
 def signin():
+    if request.method == "POST":
+        users = mongo.db.users
+        user_name = users.find_one({'name': request.form['username']})
+        user_pass = users.find_one({'password': request.form['password']})
+        print(user_name)
+        print(user_pass)
+        username = request.form.get("username")
+        password = request.form.get("password")
+        print(username)
+        print(password)
+
+        if not username in user_name:
+            return "Invalide username"
+        else:
+            user = users[username]
+        
+        if not password in user_pass:
+            return 'Invalid password'
+        else:
+            session["username"] = user["username"]
+            return render_template('index.html')
+
     return render_template('login.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    users = mongo.db.users
-    user_login = users.find_one({'name': request.form['username']})
-    print(user_login)
-    if user_login:
-        if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
-            session['username'] = request.form['username']
-            return render_template('index.html')
-    else:
-        flash(f'Invalid username')
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+    # users = mongo.db.users
+    # user_login = users.find_one({'name': request.form['username']})
+    # print(user_login)
+    # if user_login:
+    #     print(request.form['username'])
+    #     print(request.form['pass'])
+    #     print(session['username'])
+    #     print(user_login['password'])
+    #     if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
+    #         session['username'] = request.form['username']
+            
+    #         return render_template('index.html')
+    # else:
+    #     flash(f'Invalid username')
     
-    return render_template('Invalid username or password')
+    # return render_template('Invalid username or password')
 
 
 @app.route('/register', methods=['POST', 'GET'])
