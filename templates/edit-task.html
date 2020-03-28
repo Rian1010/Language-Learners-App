@@ -46,20 +46,6 @@
         <div class="row">
             <div class="col-12">
                 <form action="{{ url_for('insert_task') }}" method="POST" class="col-12 task-box text-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <select name="lesson_name" id="lesson_name">
-                                <option value="" disabled selected>Choose Lesson</option>
-                                {% for lesson in lessons %}
-                                {% if lesson.lesson_name == task.lesson_name %}
-                                <option value="{{lesson.lesson_name}}" selected>{{task.lesson_name}}</option>
-                                {% else %}
-                                <option value="{{lesson.lesson_name}}">{{lesson.lesson_name}}</option>
-                                {% endif %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-12">

@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center heading-margin">
-                <h1>Edit Lesson</h1>
+                <h1>Add New Tasks</h1>
             </div>
         </div>
     </div>
@@ -45,25 +45,42 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ url_for('update_lesson1', addLesson1_id=addLesson1._id) }}" method="POST" class="col-12 task-box text-center">
-
-                    <div class="row">
-                        <div class="col-4 offset-4">
-                            <input type="text" name="heading1" value="{{addLesson1.heading1}}" class="form-control" placeholder="Lesson Heading">
-                        </div>
-                    </div>
-
+                <form action="{{ url_for('insert_task') }}" method="POST" class="col-12 task-box text-center">
                     <div class="row">
                         <div class="col-12">
-                            <textarea id="lesson1_content" name="lesson1_content" type="text"
-                                placeholder="Description" required>{{addLesson1.lesson1_content}}</textarea>
+                            <select name="lesson_name" id="lesson_name">
+                                <option value="" disabled selected>Choose Lesson</option>
+                                {% for lesson in lessons %}
+                                <option value="{{ lesson.lesson_name }}">{{ lesson.lesson_name }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <div class="form-groups form-positioning">
+                                <label for="">Task Name</label>
+                                <input type="text" class="form-control" id="task_name" name="task_name"
+                                    placeholder="Task Name">
+                            </div>
+
+
+                            <div class="form-groups">
+                                <label for="">Task Description</label>
+                                <input type="text" class="form-control" id="task_description" name="task_description" placeholder="Task Description">
+                            </div>
+
+                            <div class="form-groups">
+                                <label for="">Due Date</label>
+                                <input type="text" class="form-control" id="due_date" name="due_date" placeholder="Due Date">
+                            </div>
+
+                            <button class="btn btn-block btns edit-pages-btn-margins" type="submit">Add New List
+                                Item</button>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button class="btn btn-info" type="submit" name="action">Done
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                            <button class="btn btn-info" type="submit">Add New Task
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>

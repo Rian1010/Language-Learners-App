@@ -16,36 +16,54 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    if 'username' in session:
-        return 'Hi ' + session['username']
-    return render_template('index.html')
+    username = session.get('username')
+    if username:
+        return render_template('index.html')
+    return render_template('register.html')
 
 
-@app.route('/signin', methods = ["GET", "POST"])
+@app.route('/signin', methods=["GET", "POST"])
 def signin():
-    if request.method == "POST":
-        users = mongo.db.users
-        user_name = users.find_one({'name': request.form['username']})
-        user_pass = users.find_one({'password': request.form['password']})
-        print(user_name)
-        print(user_pass)
-        username = request.form.get("username")
-        password = request.form.get("password")
-        print(username)
-        print(password)
+    if request.method == 'POST':
+        username = request.form["username"]
+        email = request.form["email"]
+        password = request.form['password']
+        user = mongo.db.users.find_one({"username": username})
+        userEmail = mongo.db.users.find_one({"email": email})
 
-        if not username in user_name:
-            return "Invalide username"
-        else:
-            user = users[username]
-        
-        if not password in user_pass:
-            return 'Invalid password'
-        else:
-            session["username"] = user["username"]
+        if user or userEmail and mongo.db.users.find_one({"password": password}):
+            session['username'] = user["username"]
             return render_template('index.html')
+        else:
+            return 'Invalid email or password'
 
     return render_template('login.html')
+
+    # First tries
+    # if request.method == "POST":
+    #     users = mongo.db.users
+    #     user_name = users.find_one({'name': request.form['username']})
+    #     user_pass = users.find_one({'password': request.form['password']})
+    #     print(user_name)
+    #     print(user_pass)
+    #     username = request.form.get("username")
+    #     password = request.form.get("password")
+    #     print(username)
+    #     print(password)
+
+    #     if not username in user_name:
+    #         return "Invalide username"
+    #     else:
+    #         user = users[username]
+
+    #     if not password in user_pass:
+    #         return 'Invalid password'
+    #     else:
+    #         user = users[username]
+    #         session["username"] = user["username"]
+    #         return render_template('index.html')
+
+    # return render_template('login.html')
 
 
 # @app.route('/login', methods=['GET', 'POST'])
@@ -60,61 +78,129 @@ def signin():
     #     print(user_login['password'])
     #     if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
     #         session['username'] = request.form['username']
-            
+
     #         return render_template('index.html')
     # else:
     #     flash(f'Invalid username')
-    
+
     # return render_template('Invalid username or password')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        users = mongo.db.users
-        user_exists = users.find_one({'name': request.form['username']})
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        user = {'username': username, 'email': email, 'password': password}
 
-        if user_exists is None:
-            hashpass = bcrypt.hashpw(
-                request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert_one(
-                {'name': request.form['username'], 'password': hashpass})
+        if mongo.db.users.find_one({"username": username, "email": email}):
+            return 'User already exists'
+        else:
+            mongo.db.users.insert_one(user)
             session['username'] = request.form['username']
-            return redirect(url_for('index'))
-
-        return 'The username that you have entered already exists!'
+            return render_template('index.html', user=user, password=password)
 
     return render_template('register.html')
+
+    # if request.method == 'POST':
+    #     users = mongo.db.users
+    #     user_exists = users.find_one({'name': request.form['username']})
+
+    #     if user_exists is None:
+    #         hashpass = bcrypt.hashpw(
+    #             request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+    #         users.insert_one(
+    #             {'name': request.form['username'], 'password': hashpass})
+    #         session['username'] = request.form['username']
+    #         return redirect(url_for('index'))
+
+    #     return 'The username that you have entered already exists!'
+
+    # return render_template('register.html')
 
 
 @app.route('/logout')
 def logout():
-    session.pop('user', None)
+    session.pop('username', None)
     return redirect('/signin')
 
 
 @app.route('/task_manager')
 def task_manager():
-    return render_template('task-manager.html', tasks=mongo.db.tasks.find())
+    return render_template('task-manager.html', task=mongo.db.tasks.find())
+
+
+@app.route('/add_task_title')
+def add_task_title():
+    return render_template('add-task-title.html', lessons=mongo.db.lessons.find())
 
 
 @app.route('/add_tasks')
-def add_tasks():
-    return render_template('add-tasks.html', lessons=mongo.db.lessons.find(), task=mongo.db.task.find())
+def add_task():
+    return render_template('add-tasks.html', tasks=mongo.db.tasks.find())
 
 
-@app.route('/insert_task', methods=['POST'])
+@app.route('/insert_task', methods=['GET', 'POST'])
 def insert_task():
     tasks = mongo.db.tasks
-    tasks.insert_one(request.form.to_dict())
+    tasks.insert_one({
+        "username": session['username'],
+        "lesson_name": request.form.get('the_lesson'),
+        'task_name': request.form.get('task_name'),
+        'task_descrip': request.form.get('task_description'),
+        'due_date': request.form.get('due_date'),
+    })
+    # user_lesson = request.form.get('lesson_name')
+    # task_name = request.form.get('task_name')
+    # task_descrip = request.form.get('task_description')
+    # due_date = request.form.get('due_date')
+    # task_manager_data = {
+    # "lesson_name": user_lesson,
+    # "the_task": [  {"task_name": task_name,
+    #             "task_descrip": task_descrip,
+    #             "due_date": due_date},
+
+    #             {"task_name": task_name,
+    #             "task_descrip": task_descrip,
+    #             "due_date": due_date}]
+    # }
+    # task.insert_one(task_manager_data)
+    return redirect(url_for('task_manager'))
+
+
+@app.route('/update_task/<task_id>', methods=['GET', 'POST'])
+def update_task(task_id):
+    task = mongo.db.tasks
+    task.update({'_id': ObjectId(task_id)},
+                {
+                "username": session['username'],
+                "lesson_name": request.form.get('the_lesson'),
+                'task_name': request.form.get('task_name'),
+                'task_descrip': request.form.get('task_description'),
+                'due_date': request.form.get('due_date'),
+                })
     return redirect(url_for('task_manager'))
 
 
 @app.route('/edit_task/<task_id>')
 def edit_task(task_id):
     the_task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
-    all_categories = mongo.db.categories.find()
-    return render_template('edit-task.html', task=the_task, lessons=mongo.db.lessons.find(), categories=all_categories)
+    return render_template('edit-task.html', task=the_task)
+
+
+@app.route('/edit_task_title/<task_title_id>')
+def edit_task_title(task_title_id):
+    the_lesson = mongo.db.task_title.find_one({"_id": ObjectId(task_title_id)})
+    the_task_title = mongo.db.task_title.find()
+    lessons = mongo.db.lessons.find()
+    return render_template('edit-task-title.html', selectedLesson=the_lesson, lessons=lessons, task_title=the_task_title)
+
+
+@app.route('/delete_full_task/<task_id>/<title_id>')
+def delete_full_task(task_id, title_id):
+    mongo.db.task_title.delete_many({'username': session['username']})
+    return redirect(url_for('task_manager'))
 
 
 @app.route('/delete_task/<task_id>')
@@ -134,18 +220,19 @@ def add_posts():
     return render_template('add-posts.html', posts=mongo.db.posts.find(), lessons=mongo.db.lessons.find())
 
 
-@app.route('/update_post/<post_id>', methods=['POST'])
+@app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
     posts = mongo.db.posts
     posts.update({'_id': ObjectId(post_id)},
                  {
+        "username": session['username'],
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
     })
     return redirect(url_for('community'))
 
 
-@app.route('/insert_post', methods=['POST'])
+@app.route('/insert_post', methods=['GET', 'POST'])
 def insert_post():
     posts = mongo.db.posts
     posts.insert_one(request.form.to_dict())
@@ -164,10 +251,10 @@ def delete_post(post_id):
     return redirect(url_for('community'))
 
 
-@app.route('/lesson_one/<addLesson1_id>')
-def lesson_one(addLesson1_id):
-    add_lesson1 = mongo.db.addLesson1.find()
-    return render_template('lesson-one.html', add_lesson1=add_lesson1)
+@app.route('/lesson_one')
+def lesson_one():
+    addLesson1 = mongo.db.addLesson1.find()
+    return render_template('lesson-one.html', addLesson1=addLesson1)
 
 
 @app.route('/add_new_lesson1')
@@ -175,20 +262,20 @@ def add_new_lesson1():
     return render_template('add-lesson-1.html', add_lesson1=mongo.db.addLesson1.find())
 
 
-@app.route('/update_lesson1/<addLesson1_id>', methods=['POST'])
+@app.route('/update_lesson1/<addLesson1_id>', methods=['GET', 'POST'])
 def update_lesson1(addLesson1_id):
     addLesson1 = mongo.db.addLesson1
     addLesson1.update({'_id': ObjectId(addLesson1_id)},
                       {
+        "username": session['username'],
         'heading1': request.form.get('heading1'),
-        'email1': request.form.get('email1'),
         'lesson1_content': request.form.get('lesson1_content'),
     }
     )
     return redirect(url_for('lesson_one', addLesson1=addLesson1))
 
 
-@app.route('/insert_lesson1', methods=['POST'])
+@app.route('/insert_lesson1', methods=['GET', 'POST'])
 def insert_lesson1():
     addLesson1 = mongo.db.addLesson1
     addLesson1.insert_one(request.form.to_dict())
@@ -197,8 +284,7 @@ def insert_lesson1():
 
 @app.route('/edit_lesson1/<addLesson1_id>')
 def edit_lesson1(addLesson1_id):
-    addLesson1 = mongo.db.add_lesson1.find_one(
-        {"_id": ObjectId(addLesson1_id)})
+    addLesson1 = mongo.db.addLesson1.find_one({"_id": ObjectId(addLesson1_id)})
     return render_template('edit-lesson-1.html', addLesson1=addLesson1)
 
 

@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center heading-margin">
-                <h1>Edit Lesson</h1>
+                <h1>Edit Task</h1>
             </div>
         </div>
     </div>
@@ -45,26 +45,26 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ url_for('update_lesson1', addLesson1_id=addLesson1._id) }}" method="POST" class="col-12 task-box text-center">
-
-                    <div class="row">
-                        <div class="col-4 offset-4">
-                            <input type="text" name="heading1" value="{{addLesson1.heading1}}" class="form-control" placeholder="Lesson Heading">
-                        </div>
-                    </div>
-
+                <form action="{{ url_for('update_task_title', task_title_id=selectedLesson._id) }}" method="POST" class="col-12 task-box text-center">
                     <div class="row">
                         <div class="col-12">
-                            <textarea id="lesson1_content" name="lesson1_content" type="text"
-                                placeholder="Description" required>{{addLesson1.lesson1_content}}</textarea>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <button class="btn btn-info" type="submit" name="action">Done
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </button>
+                            <select name="lesson_name" id="lesson_name">
+                                {{selectedLesson.lesson_name}}
+                                {% for lesson in lessons %}
+                                {% if lesson.lesson_name == selectedLesson.lesson_name %}
+                                <option value="{{ lesson.lesson_name }}" selected>{{selectedLesson.lesson_name}}</option>
+                                {% else %}
+                                <option value="{{ lesson.lesson_name }}">{{lesson.lesson_name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-info" type="submit">done
+                                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
