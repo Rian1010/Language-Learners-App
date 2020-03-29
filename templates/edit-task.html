@@ -45,8 +45,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ url_for('insert_task') }}" method="POST" class="col-12 task-box text-center">
-
+                <form action="{{ url_for('update_task', task_id=task._id) }}" method="POST" class="col-12 task-box text-center">
+                    <select name="lesson_name" id="lesson_name">
+                        {% for lesson in lessons %}
+                        {% if lesson.lesson_name == tasks.lesson_name %}
+                        <option value="{{ lesson.lesson_name }}" selected>{{lesson.lesson_name}}</option>
+                        {% else %} 
+                        <option value="{{ lesson.lesson_name }}">{{lesson.lesson_name}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
                     <div class="row">
                         <div class="col-12">
                             <input id="task_name" name="task_name" type="text" value="{{task.task_name}}"
@@ -56,8 +64,8 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <textarea id="task_description" name="task_description" type="text"
-                                placeholder="Description" required>{{task.task_description}}</textarea>
+                            <textarea id="task_descrip" name="task_descrip" type="text"
+                                placeholder="Description" required>{{task.task_descrip}}</textarea>
                         </div>
                     </div>
 

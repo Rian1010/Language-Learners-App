@@ -1,10 +1,8 @@
 import os
-import bcrypt
 from datetime import datetime
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask import flash
 
 app = Flask(__name__, template_folder='templates')
 
@@ -128,7 +126,7 @@ def logout():
 
 @app.route('/task_manager')
 def task_manager():
-    return render_template('task-manager.html', task=mongo.db.tasks.find())
+    return render_template('task-manager.html', tasks=mongo.db.tasks.find())
 
 
 @app.route('/add_task_title')
@@ -138,7 +136,7 @@ def add_task_title():
 
 @app.route('/add_tasks')
 def add_task():
-    return render_template('add-tasks.html', tasks=mongo.db.tasks.find())
+    return render_template('add-tasks.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
 
 
 @app.route('/insert_task', methods=['GET', 'POST'])
@@ -146,7 +144,7 @@ def insert_task():
     tasks = mongo.db.tasks
     tasks.insert_one({
         "username": session['username'],
-        "lesson_name": request.form.get('the_lesson'),
+        "lesson_name": request.form.get('lesson_name'),
         'task_name': request.form.get('task_name'),
         'task_descrip': request.form.get('task_description'),
         'due_date': request.form.get('due_date'),
@@ -175,9 +173,9 @@ def update_task(task_id):
     task.update({'_id': ObjectId(task_id)},
                 {
                 "username": session['username'],
-                "lesson_name": request.form.get('the_lesson'),
+                "lesson_name": request.form.get('lesson_name'),
                 'task_name': request.form.get('task_name'),
-                'task_descrip': request.form.get('task_description'),
+                'task_descrip': request.form.get('task_descrip'),
                 'due_date': request.form.get('due_date'),
                 })
     return redirect(url_for('task_manager'))

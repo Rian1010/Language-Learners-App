@@ -39,7 +39,6 @@ echo web: python app.py > Procfile
 git add .
 git commit -m "Added Procfile"
 git push heroku master
-
 heroku ps:scale web=1
 
 - Images on index.html
