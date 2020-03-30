@@ -51,15 +51,33 @@
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>if(condition) {<br>
+                        // code gets executed, if true<br>
+                    }<br>
+                    else if(condition) {<br>
+                        // code gets executed, if first condition is not true<br>
+                    }<br>
+                    else {<br>
+                        // code gets executed, if all else is false<br>
+                    }<br>
+                    </p>
+                    <h3>Example:</h3>
+                    <p>
+                        let minutes = 30;<br>
+                        let hour = 1;<br>
+
+                        if (minutes == 2 && hour != 1) {<br>
+                            return "Two minutes have passed."<br>
+                        }<br>
+                        else if(minutes == 26 || hours == 1) {<br>
+                            return "More than 25 minutes have passed."<br>
+                        }<br>
+                        else {<br>
+                            return "Less than two minutes have passed"<br>
+                        }<br>
+
+                        The result will be "More than 25 minutes have passed.", as hour = 1.
+                    </p>
                 </div>
             </div>
         </div>
@@ -76,15 +94,21 @@
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>
+                        switch(expression) {<br>
+                            case x:<br>
+                                // code gets executed in case x matches<br>
+                                break; // required to stop the execution<br>
+                            case y:<br>
+                                // code is here<br>
+                                continue; // Means that the case will be skipped, if matched<br>
+                            case z:<br>
+                                // code gets executed, if true<br>
+                                break;<br>
+                            default:<br>
+                                // code that gets executed in case nothing of the above matches<br>
+                        }
+                    </p>
                 </div>
             </div>
         </div>
@@ -101,15 +125,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>
+                        for (start; finish; increment/decrement) {<br>
+                            // Code comes here<br>
+                        }
+                    </p>
+                    <p>let arr = [3,4,5,6,7]</p>
+                    <p>
+                        for(i = 0; i < arr.length; i++) {<br>
+                            // Code goes here<br>
+                        }
+                    </p>
+                    
                 </div>
             </div>
         </div>

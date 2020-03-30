@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center heading-margin">
-                <h1>Edit Task</h1>
+                <h1>{{task._id}}</h1>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                 <form action="{{ url_for('update_task', task_id=task._id) }}" method="POST" class="col-12 task-box text-center">
                     <select name="lesson_name" id="lesson_name">
                         {% for lesson in lessons %}
-                        {% if lesson.lesson_name == tasks.lesson_name %}
+                        {% if lesson.lesson_name == task.lesson_name %}
                         <option value="{{ lesson.lesson_name }}" selected>{{lesson.lesson_name}}</option>
                         {% else %} 
                         <option value="{{ lesson.lesson_name }}">{{lesson.lesson_name}}</option>

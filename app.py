@@ -126,7 +126,7 @@ def logout():
 
 @app.route('/task_manager')
 def task_manager():
-    return render_template('task-manager.html', tasks=mongo.db.tasks.find())
+    return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
 
 
 @app.route('/add_task_title')
@@ -178,13 +178,15 @@ def update_task(task_id):
                 'task_descrip': request.form.get('task_descrip'),
                 'due_date': request.form.get('due_date'),
                 })
+    
     return redirect(url_for('task_manager'))
 
 
 @app.route('/edit_task/<task_id>')
 def edit_task(task_id):
-    the_task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
-    return render_template('edit-task.html', task=the_task)
+    the_lesson = mongo.db.lessons.find()
+    the_task = mongo.db.tasks.find({"_id": ObjectId(task_id)})
+    return render_template('edit-task.html', task=the_task, lessons=the_lesson)
 
 
 @app.route('/edit_task_title/<task_title_id>')
@@ -192,6 +194,7 @@ def edit_task_title(task_title_id):
     the_lesson = mongo.db.task_title.find_one({"_id": ObjectId(task_title_id)})
     the_task_title = mongo.db.task_title.find()
     lessons = mongo.db.lessons.find()
+    
     return render_template('edit-task-title.html', selectedLesson=the_lesson, lessons=lessons, task_title=the_task_title)
 
 
