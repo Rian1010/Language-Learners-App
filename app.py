@@ -29,7 +29,7 @@ def signin():
         user = mongo.db.users.find_one({"username": username})
         userEmail = mongo.db.users.find_one({"email": email})
 
-        if user or userEmail and mongo.db.users.find_one({"password": password}):
+        if user and userEmail and mongo.db.users.find_one({"password": password}):
             session['username'] = user["username"]
             return render_template('index.html')
         else:
@@ -126,7 +126,10 @@ def logout():
 
 @app.route('/task_manager')
 def task_manager():
-    return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
+    user = session.get('username')
+    if user:
+        return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
+    return render_template('login.html')
 
 @app.route('/add_tasks')
 def add_task():
@@ -202,25 +205,33 @@ def community():
 
 @app.route('/add_posts')
 def add_posts():
-    return render_template('add-posts.html', posts=mongo.db.posts.find(), lessons=mongo.db.lessons.find())
+    initDate = datetime.today().strftime("%A %D")
+    return render_template('add-posts.html', posts=mongo.db.posts.find(), lessons=mongo.db.lessons.find(), initDate=initDate)
+
+@app.route('/insert_post', methods=['GET', 'POST'])
+def insert_post():
+    posts = mongo.db.posts 
+    posts.insert_one({
+        "username": session['username'],
+        "lesson_name": request.form.get("lesson_name"),
+        "post_content": request.form.get("post_content"),
+        "initDate": datetime.today().strftime("%A %D %H:%M:%S"),
+        "edit_today": "Edit: No Edits Have Been Commited",
+    })
+    return redirect(url_for('community'))
 
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
     posts = mongo.db.posts
-    posts.update({'_id': ObjectId(post_id)},
-                 {
+    posts.update_one({'_id': ObjectId(post_id)},
+                 { "$set": {
         "username": session['username'],
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
-    })
-    return redirect(url_for('community'))
-
-
-@app.route('/insert_post', methods=['GET', 'POST'])
-def insert_post():
-    posts = mongo.db.posts
-    posts.insert_one(request.form.to_dict())
+        "edit_today": datetime.now().strftime("Edited: %A %D"),
+        "initDate": posts.initDate,
+    }})
     return redirect(url_for('community'))
 
 
@@ -254,7 +265,7 @@ def update_lesson1(addLesson1_id):
                       {
         "username": session['username'],
         'heading1': request.form.get('heading1'),
-        'lesson1_content': request.form.get('lesson1_content'),
+        'lesson_content1': request.form.get('lesson_content1'),
     }
     )
     return redirect(url_for('advanced_lesson', addLesson1=addLesson1))
@@ -266,10 +277,9 @@ def insert_lesson1():
     addLesson1.insert_one({
         "username": session['username'],
         "heading1": request.form.get('heading1'),
-        'lesson_content1': request.form.get('lesson1_content'),
+        'lesson_content1': request.form.get('lesson_content1'),
     })
     return redirect(url_for('advanced_lesson'))
-
 
 @app.route('/edit_lesson1/<addLesson1_id>')
 def edit_lesson1(addLesson1_id):
@@ -279,7 +289,7 @@ def edit_lesson1(addLesson1_id):
 
 @app.route('/delete_lesson1/<addLesson1_id>')
 def delete_lesson1(addLesson1_id):
-    mongo.db.addLesson1.remove({"_id": ObjectId(addLesson1_id)})
+    mongo.db.addLesson1.delete_one({"_id": ObjectId(addLesson1_id)})
     return redirect(url_for('advanced_lesson'))
 
 
@@ -311,7 +321,7 @@ def lesson_six():
 @app.route('/advanced_lesson')
 def advanced_lesson():
     addLesson1 = mongo.db.addLesson1.find()
-    return render_template('advanced-lesson.html', addLesson1=addLesson1)
+    return render_template('advanced-lesson.html', add_lesson1=addLesson1)
 
 
 if __name__ == '__main__':

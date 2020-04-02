@@ -41,55 +41,6 @@
         </div>
     </div>
 </section>
-<section class="white-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 heading-margin">
-                <h2>Classes</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="blue-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 heading-margin">
-                <h2>Build a calculator</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="grey-background-box">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil perspiciatis expedita eligendi
-                        labore voluptate dignissimos? Sint, nulla. Distinctio, voluptas aliquam?</p>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="white-section">
     <div class="container">
@@ -120,7 +71,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 heading-margin">
-                <h2>Random Colour Generator</h2>
+                <h2>Brick Breaker Game</h2>
             </div>
         </div>
         <div class="row">
@@ -169,8 +120,13 @@
 <section>
     <div class="container">
         <div class="row">
+            <div class="col-12 heading-margin text-center">
+                <h2>Add Your Own Lessons Below to Help Others!</h2>
+            </div>
+        </div>
+        <div class="row">
 			<div class="col-12 offset-md-6 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
-				<a href="{{ url_for('add_new_lesson1') }}" class="add-task-btn">
+                <a href="{{ url_for('add_new_lesson1') }}" class="add-task-btn">
 					<div class="plus-sign-add-task">
 						<p>+</p>
 					</div>
@@ -182,7 +138,7 @@
 
 {% for info in add_lesson1 %}
 {% if loop.index % 2 != 0 %}
-<section class="blue-section">
+<section class="purple-section">
     <div class="container">
         <div class="row">
             <div class="col-12 heading-margin">
@@ -193,14 +149,14 @@
             <div class="col-12">
                 <div class="grey-background-box">
                     
-                    <p>{{ info.username }}</p>
-                    <p>{{ info.lesson1_content}}</p>
+                    <p>By: {{ info.username }}</p>
+                    <p>{{ info.lesson_content1}}</p>
                     
                 </div>
             </div>
         </div>
+        {% if info.username == session['username'] %}
         <div class="row">
-
             <div class="col-6">
                 <a href="{{ url_for('delete_lesson1', addLesson1_id=info._id) }}">
                     <button class="btn btn-danger" type="submit" name="action">Delete
@@ -217,6 +173,7 @@
                 </a>
             </div>
         </div>
+        {% endif %}
     </div>
 </section>
 {% else %}
@@ -231,16 +188,16 @@
             <div class="col-12">
                 <div class="grey-background-box">
                     
-                    <p>{{ info.username }}</p>
-                    <p>{{ info.lesson1_content}}</p>
+                    <p>By: {{ info.username }}</p>
+                    <p>{{ info.lesson_content1}}</p>
                     
                 </div>
             </div>
         </div>
+        {% if info.username == session['username'] %}
         <div class="row">
-
             <div class="col-6">
-                <a href="{{ url_for('delete_lesson1', addLesson1_id=addLesson1._id) }}">
+                <a href="{{ url_for('delete_lesson1', addLesson1_id=info._id) }}">
                     <button class="btn btn-danger" type="submit" name="action">Delete
                         <i class="fa fa-minus-square" aria-hidden="true"></i>
                     </button>
@@ -248,13 +205,14 @@
             </div>
 
             <div class="col-6">
-                <a href="{{ url_for('edit_lesson1', addLesson1_id=addLesson1._id) }}">
+                <a href="{{ url_for('edit_lesson1', addLesson1_id=info._id) }}">
                     <button class="btn btn-info" type="submit" name="action">Edit
                         <i class="fa fa-edit" aria-hidden="true"></i>
                     </button>
                 </a>
             </div>
         </div>
+        {% endif %}
     </div>
 </section>
 {% endif %} 

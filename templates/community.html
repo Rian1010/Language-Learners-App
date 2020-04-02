@@ -51,15 +51,23 @@
 
 					<div class="d-none d-sm-block">
 						<div class="flex-row">
-							<h5>User: {{ post.username }}</h5>
+							<h5>By: {{ post.username }}</h5>
+							<p>{{ post.initDate }}</p>
+							<p>{{ post.edit_today }}</p>
 						</div>
+					</div>
+
+					<div class="d-block d-sm-none">
+						<h5>By: {{ post.username }}</h5>
+						<p>{{ post.initDate }}</p>
+						<p>{{ post.edit_today }}</p>
 					</div>
 
 					<h4>Topic: {{ post.lesson_name }}</h4>
 
 					<p>{{ post.post_content }}</p>
+					{% if post.username == session['username'] %}
 					<div class="row">
-
 						<div class="col-6">
 							<a href="{{ url_for('delete_post', post_id=post._id) }}">
 								<button class="btn btn-danger" type="submit" name="action">Delete
@@ -76,7 +84,7 @@
 							</a>
 						</div>
 					</div>
-
+					{% endif %}
 				</div>
 			</div>
 		</div>

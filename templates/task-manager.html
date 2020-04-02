@@ -45,6 +45,7 @@
 	<div class="container">
 		<div class="row">
 			{% for task in tasks %}
+			{% if task.username == session['username'] %}
 			<div class="col-12 col-md-6 col-xl-4">
 				<div class="task-box text-center">
 					<h2>{{task.lesson_name}}</h2>
@@ -89,12 +90,12 @@
 					</div> -->
 				</div>
 			</div>
+			{% endif %}
 			{% endfor %}
 
 
-
 			<div class="col-12 col-md-6 col-xl-4 justify-content-center circle">
-				<a href="{{ url_for('add_task_title') }}" class="add-task-btn">
+				<a href="{{ url_for('add_task') }}" class="add-task-btn">
 					<div class="plus-sign-add-task">
 						<p>+</p>
 					</div>
