@@ -29,6 +29,9 @@
 				<a href="{{ url_for('logout')}}" class="nav-link">Logout</a>
 			</li>
 		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item nav-link">Account: {{ session["username"] }}</li>
+		</ul>
 	</div>
 </nav>
 {% endblock %}

@@ -16,7 +16,8 @@ mongo = PyMongo(app)
 def index():
     username = session.get('username')
     if username:
-        return render_template('index.html')
+        users = mongo.db.users.find()
+        return render_template('index.html', users=users)
     return render_template('register.html')
 
 
@@ -31,6 +32,7 @@ def signin():
 
         if user and userEmail and mongo.db.users.find_one({"password": password}):
             session['username'] = user["username"]
+            session["email"] = userEmail["email"]
             return render_template('index.html')
         else:
             return 'Invalid email or password'
@@ -216,21 +218,21 @@ def insert_post():
         "lesson_name": request.form.get("lesson_name"),
         "post_content": request.form.get("post_content"),
         "initDate": datetime.today().strftime("%A %D %H:%M:%S"),
-        "edit_today": "Edit: No Edits Have Been Commited",
+        "edit_today": "Edit: None",
     })
     return redirect(url_for('community'))
-
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 def update_post(post_id):
     posts = mongo.db.posts
+    # thePost = mongo.db.posts.find_one({"_id": ObjectId(post_id)}
     posts.update_one({'_id': ObjectId(post_id)},
                  { "$set": {
         "username": session['username'],
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
         "edit_today": datetime.now().strftime("Edited: %A %D"),
-        "initDate": posts.initDate,
+        # "initDate": thePost.initDate,
     }})
     return redirect(url_for('community'))
 
