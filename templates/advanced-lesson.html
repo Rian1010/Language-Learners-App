@@ -1,33 +1,33 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block navbar %}
 <nav class="navbar navbar-expand-sm navbar-light bg-info fixed-top">
-	<a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
+    <a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
 
-	<button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
-		aria-expanded="navbarNavDropdown" aria-controls="false">
+    <button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-expanded="navbarNavDropdown" aria-controls="false">
 
-		<span class="navbar-toggler-icon"></span></button>
+        <span class="navbar-toggler-icon"></span></button>
 
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a href="index.html#hp-section1" class="nav-link">Home</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section2" class="nav-link">Start Learning</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section3" class="nav-link">Planner</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section5" class="nav-link">Community</a>
-			</li>
-			<li class="nav-item">
-				<a href="index.html#hp-section6" class="nav-link">Chat With Us</a>
-			</li>
-		</ul>
-	</div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="index.html#hp-section1" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section2" class="nav-link">Start Learning</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section3" class="nav-link">Planner</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section5" class="nav-link">Community</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html#hp-section6" class="nav-link">Chat With Us</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 {% endblock %}
 
@@ -125,40 +125,44 @@
             </div>
         </div>
         <div class="row">
-			<div class="col-12 offset-md-6 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
-                <a href="{{ url_for('add_new_lesson1') }}" class="add-task-btn">
-					<div class="plus-sign-add-task">
-						<p>+</p>
-					</div>
-				</a>
-			</div>
-		</div>
+            <div class="col-12 offset-md-6 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
+                <a href="{{ url_for('add_new_lesson') }}" class="add-task-btn">
+                    <div class="plus-sign-add-task">
+                        <p>+</p>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
-{% for info in add_lesson1 %}
-{% if loop.index % 2 != 0 %}
+{% for info in add_lesson %}
+{% if loop.index % 2 == 0 %}
+{% if info.heading == Null %}
+{{ Null }}
+{% else %}
 <section class="purple-section">
     <div class="container">
+
         <div class="row">
             <div class="col-12 heading-margin">
-                <h2>{{ info.heading1 }}</h2>
+                <h2>{{ info.heading }}</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    
+
                     <p>By: {{ info.username }}</p>
-                    <p>{{ info.lesson_content1}}</p>
-                    
+                    <p>{{ info.lesson_content }}</p>
+
                 </div>
             </div>
         </div>
         {% if info.username == session['username'] %}
         <div class="row">
             <div class="col-6">
-                <a href="{{ url_for('delete_lesson1', addLesson1_id=info._id) }}">
+                <a href="{{ url_for('delete_lesson', addLesson_id=info._id) }}">
                     <button class="btn btn-danger" type="submit" name="action">Delete
                         <i class="fa fa-minus-square" aria-hidden="true"></i>
                     </button>
@@ -166,7 +170,7 @@
             </div>
 
             <div class="col-6">
-                <a href="{{ url_for('edit_lesson1', addLesson1_id=info._id) }}">
+                <a href="{{ url_for('edit_lesson', addLesson_id=info._id) }}">
                     <button class="btn btn-info" type="submit" name="action">Edit
                         <i class="fa fa-edit" aria-hidden="true"></i>
                     </button>
@@ -176,28 +180,33 @@
         {% endif %}
     </div>
 </section>
+{% endif %}
+{% else %}
+{% if info.heading == Null %}
+{{ Null }}
 {% else %}
 <section class="white-section">
     <div class="container">
+
         <div class="row">
             <div class="col-12 heading-margin">
-                <h2>{{ info.heading1 }}</h2>
+                <h2>{{ info.heading }}</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="grey-background-box">
-                    
+
                     <p>By: {{ info.username }}</p>
-                    <p>{{ info.lesson_content1}}</p>
-                    
+                    <p>{{ info.lesson_content}}</p>
+
                 </div>
             </div>
         </div>
         {% if info.username == session['username'] %}
         <div class="row">
             <div class="col-6">
-                <a href="{{ url_for('delete_lesson1', addLesson1_id=info._id) }}">
+                <a href="{{ url_for('delete_lesson', addLesson_id=info._id) }}">
                     <button class="btn btn-danger" type="submit" name="action">Delete
                         <i class="fa fa-minus-square" aria-hidden="true"></i>
                     </button>
@@ -205,7 +214,7 @@
             </div>
 
             <div class="col-6">
-                <a href="{{ url_for('edit_lesson1', addLesson1_id=info._id) }}">
+                <a href="{{ url_for('edit_lesson', addLesson_id=info._id) }}">
                     <button class="btn btn-info" type="submit" name="action">Edit
                         <i class="fa fa-edit" aria-hidden="true"></i>
                     </button>
@@ -215,6 +224,7 @@
         {% endif %}
     </div>
 </section>
-{% endif %} 
+{% endif %}
+{% endif %}
 {% endfor %}
 {% endblock %}

@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center heading-margin">
-                <h1>Edit Lesson</h1>
+                <h1>Add A New Lesson For Lesson: Basics</h1>
             </div>
         </div>
     </div>
@@ -45,25 +45,31 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ url_for('update_lesson1', addLesson1_id=addLesson1._id) }}" method="POST" class="col-12 task-box text-center">
-
+                <form action="{{ url_for('insert_lesson') }}" method="POST" class="col-12 task-box text-center">
                     <div class="row">
-                        <div class="col-4 offset-4">
-                            <input type="text" name="heading1" value="{{addLesson1.heading1}}" class="form-control" placeholder="Lesson Heading">
+                        <div class="col-12">
+                            <input id="lesson_name" name="lesson_name" type="text" placeholder="Lesson Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <textarea id="heading" name="heading" type="text"
+                                placeholder="Lesson Heading" required></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12">
-                            <textarea id="lesson1_content" name="lesson_content1" type="text"
-                                placeholder="Description" required>{{addLesson1.lesson_content1}}</textarea>
+                            <textarea id="lesson_content" name="lesson_content" type="text"
+                                placeholder="Lesson Content" required></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button class="btn btn-info" type="submit">Done
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                            <button class="btn btn-info" type="submit">Add New Lesson
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>

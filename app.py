@@ -251,47 +251,49 @@ def delete_post(post_id):
 
 @app.route('/lesson_one')
 def lesson_one():
-    addLesson1 = mongo.db.addLesson1.find()
-    return render_template('lesson-one.html', addLesson1=addLesson1)
+    addLesson = mongo.db.lessons.find()
+    return render_template('lesson-one.html', addLesson=addLesson)
 
 
-@app.route('/add_new_lesson1')
-def add_new_lesson1():
-    return render_template('add-lesson-1.html', addLesson1=mongo.db.addLesson1.find())
+@app.route('/add_new_lesson')
+def add_new_lesson():
+    return render_template('add-lesson.html', addLesson=mongo.db.lessons.find())
 
 
-@app.route('/update_lesson1/<addLesson1_id>', methods=['GET', 'POST'])
-def update_lesson1(addLesson1_id):
-    addLesson1 = mongo.db.addLesson1
-    addLesson1.update({'_id': ObjectId(addLesson1_id)},
+@app.route('/update_lesson/<addLesson_id>', methods=['GET', 'POST'])
+def update_lesson(addLesson_id):
+    addLesson = mongo.db.lessons
+    addLesson.update({'_id': ObjectId(addLesson_id)},
                       {
         "username": session['username'],
-        'heading1': request.form.get('heading1'),
-        'lesson_content1': request.form.get('lesson_content1'),
+        'lesson_name': request.form.get('lesson_name'),
+        'heading': request.form.get('heading'),
+        'lesson_content': request.form.get('lesson_content'),
     }
     )
-    return redirect(url_for('advanced_lesson', addLesson1=addLesson1))
+    return redirect(url_for('advanced_lesson', addLesson=addLesson))
 
 
-@app.route('/insert_lesson1', methods=['GET', 'POST'])
-def insert_lesson1():
-    addLesson1 = mongo.db.addLesson1
-    addLesson1.insert_one({
+@app.route('/insert_lesson', methods=['GET', 'POST'])
+def insert_lesson():
+    addLesson = mongo.db.lessons
+    addLesson.insert_one({
         "username": session['username'],
-        "heading1": request.form.get('heading1'),
-        'lesson_content1': request.form.get('lesson_content1'),
+        'lesson_name': request.form.get('lesson_name'),
+        "heading": request.form.get('heading'),
+        'lesson_content': request.form.get('lesson_content'),
     })
     return redirect(url_for('advanced_lesson'))
 
-@app.route('/edit_lesson1/<addLesson1_id>')
-def edit_lesson1(addLesson1_id):
-    addLesson1 = mongo.db.addLesson1.find_one({"_id": ObjectId(addLesson1_id)})
-    return render_template('edit-lesson-1.html', addLesson1=addLesson1)
+@app.route('/edit_lesson/<addLesson_id>')
+def edit_lesson(addLesson_id):
+    addLesson = mongo.db.lessons.find_one({"_id": ObjectId(addLesson_id)})
+    return render_template('edit-lesson.html', addLesson=addLesson)
 
 
-@app.route('/delete_lesson1/<addLesson1_id>')
-def delete_lesson1(addLesson1_id):
-    mongo.db.addLesson1.delete_one({"_id": ObjectId(addLesson1_id)})
+@app.route('/delete_lesson/<addLesson_id>')
+def delete_lesson(addLesson_id):
+    mongo.db.lessons.delete_one({"_id": ObjectId(addLesson_id)})
     return redirect(url_for('advanced_lesson'))
 
 
@@ -322,8 +324,8 @@ def lesson_six():
 
 @app.route('/advanced_lesson')
 def advanced_lesson():
-    addLesson1 = mongo.db.addLesson1.find()
-    return render_template('advanced-lesson.html', add_lesson1=addLesson1)
+    addLesson = mongo.db.lessons.find()
+    return render_template('advanced-lesson.html', add_lesson=addLesson)
 
 
 if __name__ == '__main__':
