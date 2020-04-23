@@ -45,16 +45,13 @@
 	<div class="container">
 		<div class="row">
 			{% for task in tasks %}
-			{% if task.username == session['username'] %}
+			{% if task.task_owner == session['username'] %}
 			<div class="col-12 col-md-6 col-xl-4">
 				<div class="task-box text-center">
-					<h2>{{task.lesson_name}}</h2>
-
-					
+					<h2>{{task.task_lesson_name}}</h2>
 					<h3>{{task.task_name}}</h3>
-					<p>{{task.task_descrip}}</p>
+					<p>{{task.task_description}}</p>
 					<p>{{task.due_date}}</p>
-
 					<div class="row">
 						<div class="col-6">
 							<a href="{{ url_for('delete_task', task_id=task._id) }}">

@@ -10,27 +10,25 @@
 
 	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a href="#hp-section1" class="nav-link">Home</a>
-			</li>
 			<li class="nav-item">
 				<a href="#hp-section2" class="nav-link">Start Learning</a>
 			</li>
 			<li class="nav-item">
-				<a href="#hp-section3" class="nav-link">Planner</a>
+				<a href="{{ url_for('task_manager') }}" class="nav-link">Planner</a>
 			</li>
 			<li class="nav-item">
-				<a href="#hp-section5" class="nav-link">Community</a>
+				<a href="{{ url_for('community') }}" class="nav-link">Community</a>
 			</li>
 			<li class="nav-item">
 				<a href="#hp-section6" class="nav-link">Chat With Us</a>
 			</li>
-			<li class="nav-item">
-				<a href="{{ url_for('logout')}}" class="nav-link">Logout</a>
-			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item nav-link">Account: {{ session["username"] }}</li>
+
+			<li class="nav-item">
+				<a href="{{ url_for('logout')}}" class="nav-link">Logout</a>
+			</li>
 		</ul>
 	</div>
 </nav>

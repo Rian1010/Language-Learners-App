@@ -51,7 +51,7 @@
 
 					<div class="d-none d-sm-block">
 						<div class="flex-row">
-							<h5>By: {{ post.username }}</h5>
+							<h5>By: {{ post.author }}</h5>
 						</div>
 					</div>
 
@@ -60,23 +60,25 @@
 							<p>Created: {{ post.initDate }}</p>
 						</div>
 					</div>
-
+					{% if post.edit_today != "None" %}
 					<div class="d-none d-sm-block">
 						<div class="flex-row">
+						
 							<p>{{ post.edit_today }}</p>
 						</div>
 					</div>
 
 					<div class="d-block d-sm-none">
-						<h5>By: {{ post.username }}</h5>
+						<h5>By: {{ post.author }}</h5>
 						<p>{{ post.initDate }}</p>
 						<p>{{ post.edit_today }}</p>
 					</div>
+					{% endif %}
 
 					<h4>Topic: {{ post.lesson_name }}</h4>
 
 					<p>{{ post.post_content }}</p>
-					{% if post.username == session['username'] %}
+					{% if post.author == session['username'] %}
 					<div class="row">
 						<div class="col-6">
 							<a href="{{ url_for('delete_post', post_id=post._id) }}">
