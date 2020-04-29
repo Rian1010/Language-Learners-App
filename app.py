@@ -23,14 +23,14 @@ def index():
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
     if request.method == 'POST':
-        username = request.form["username"]
+        # username = request.form["username"]
         email = request.form["email"]
         password = request.form['password']
-        user = mongo.db.users.find_one({"username": username})
+        # user = mongo.db.users.find_one({"username": username})
         userEmail = mongo.db.users.find_one({"email": email})
 
-        if user and userEmail and mongo.db.users.find_one({"password": password}):
-            session['username'] = user["username"]
+        if userEmail and mongo.db.users.find_one({"password": password}):
+            session['username'] = userEmail["username"]
             session["email"] = userEmail["email"]
             return render_template('index.html')
         else:
