@@ -62,9 +62,152 @@ The main colours that I chose to use for this website are light blue and white. 
 
 ## Process
 ### Flask 
-I learned almost all of the code that I wrote with flask at [Code Institute](https://codeinstitute.net/). However, there were some things I tried to do through research and the help of tutors from Code Institute.
+I learned almost all of the code that I wrote with flask at [Code Institute](https://codeinstitute.net/). However, there were some things I tried to do through research and the help of tutors from Code Institute. Two of those things were the login and registration functionalities.
 
-One of those things was the registration functionality.
+At first, I tried to research how to make a login functionality and found a [YouTube video](https://www.youtube.com/watch?v=vVx1737auSE) by [PrettyPrinted](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)that showed how to do it, using bcrypt. 
+
+```python
+if request.method == 'POST':
+        users = mongo.db.users
+        user_exists = users.find_one({'name': request.form['username']})
+
+        if user_exists is None:
+            hashpass = bcrypt.hashpw(
+                request.form['pass'].encode('utf-8'), bcrypt.gensalt())
+            users.insert_one(
+                {'name': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+
+        return 'The username that you have entered already exists!'
+
+    return render_template('register.html')
+```
+This is the code that I had tried at first for the registration functionality from the video. It gave me an idea of how to get new inputed user information and grab their given details and how to create a session, all if the user did not exist in the database already. Otherwise, if those details did match, the new user would not be able to register with that information. This code did not work, so I used print statements to try to debug it and researched more about it, but the sources that I found became quite complicate and I had little time to finish the project, as it was one of the last things that I was trying to do. Therefore, I was trying to find another easier way to do it, although I liked that it would be so easy to encrypt passwords in the database through bcrypt.
+
+On the other hand, I had also tried to make a login functionality by using the same video for bcrypt and it worked! Here is the code that I had firstly used with bcrypt: 
+
+```python
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    users = mongo.db.users
+    user_login = users.find_one({'name': request.form['username']})
+    if user_login:
+        if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
+            session['username'] = request.form['username']
+
+            return render_template('index.html')
+    else:
+        flash(f'Invalid username')
+
+    return render_template('Invalid username or password')
+```
+
+I changed it later on, because bcrypt for registration looked quite complicated on other sources, while I did not have much time left to finish the project, so I found simpler ways of making a login and registration forms.
+
+So, after multiple days of lots of research and trying things out a Slack member, called Sipo from the Code Institute course helped me and so, I managed to find a way to get the registration function to work. He helped me by using the knowledge he got from doing [his third milestone project](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py). 
+
+```python
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        user = {'username': username, 'email': email, 'password': password}
+
+        if mongo.db.users.find_one({"username": username, "email": email}):
+            return 'User already exists'
+        else:
+            mongo.db.users.insert_one(user)
+            session['username'] = request.form['username']
+            return render_template('index.html', user=user, password=password)
+
+    return render_template('register.html')
+```
+
+This is the code that I have now. It works just fine, I tested if the correct error shows up, if I enter registration details that already exist, as a test and it worked. Also, registerin a new user also worked correctly.
+
+As for the login page, I tried to make sense of it and used the code below, but it did not work.
+
+```python
+    if request.method == "POST":
+        users = mongo.db.users
+        user_name = users.find_one({'name': request.form['username']})
+        user_pass = users.find_one({'password': request.form['password']})
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username in user_name:
+            return "Invalide username"
+        else:
+            user = users[username]
+
+        if not password in user_pass:
+            return 'Invalid password'
+        else:
+            user = users[username]
+            session["username"] = user["username"]
+            return render_template('index.html')
+
+    return render_template('login.html')
+```
+
+I used the help of the tutors to understand flask login functionalities better and with their help I wrote this code above. However, since it did not work, I tried a make sense of it again with the some help on Slack and got this code below:
+
+```python
+@app.route('/signin', methods=["GET", "POST"])
+def signin():
+    if request.method == 'POST':
+        username = request.form["username"]
+        user = mongo.db.users.find_one({"username": username})
+        email = request.form["email"]
+        password = request.form['password']
+        userEmail = mongo.db.users.find_one({"email": email})
+
+        if userEmail and mongo.db.users.find_one({"password": password}):
+            session['username'] = userEmail["username"]
+            session["email"] = userEmail["email"]
+            return render_template('index.html')
+        else:
+            return 'Invalid email or password'
+
+    return render_template('login.html')
+```
+
+This code works correctly and the logic behind it is basically that there is a
+
+## Testing
+- Print statements were used to test and debug python code
+- `console.log()` was used to test JavaScript code
+- Tried registering with a new account
+    - Test worked and MongoDB picked up the right details
+- Tried logging in with the previously registered account
+    - Test worked and logged me in correctly
+- Tried logging in with false information
+    - The correct error message occured
+- Tried registering with user information that already exists
+    - The correct error message occured
+- Checked if all the hover effects on the navigation bars work correctly and if each button in the navigation bar links to the right web page, after logging in
+    - Both tests worked rightly
+- Checked if the JavaScript animation and all the css hover effects on the homepage were working correctly 
+    - All tests went well
+- Checked if each link on the home page lead to the correct web page
+    - All links lead to the right web page
+- Tested if adding lessons to the advanced lessons page worked and if one was able to delete and edit them only through the account of the author of that lesson, not through any other account
+    - Tests worked rightly, as I was able to add, edit and delete only lessons from my account and no other account
+- Tested if adding a task to the task manager and deleting and editing it worked correctly
+    - Tests worked fine, as I was able to do all of it
+- Tested if other accounts could see the tasks added by other accounts
+    - Test worked rightly, as each account could only see their own added tasks
+- Tested if lessons that are added by users would appear in the lesson option list on the add tasks page
+    - Test worked, as it appeared in the option list
+- Tested if removing a lesson that is added by a user would disapper from the lesson option list on the add tasks page
+    - Test worked, as it disappeared from the option list 
+- Tested 
+
+
+
 
 ## Get the .gitignore file
 - touch .gitignore

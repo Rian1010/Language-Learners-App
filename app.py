@@ -31,59 +31,12 @@ def signin():
 
         if userEmail and mongo.db.users.find_one({"password": password}):
             session['username'] = userEmail["username"]
-            session["email"] = userEmail["email"]
+            print(session['username'])
             return render_template('index.html')
         else:
             return 'Invalid email or password'
 
     return render_template('login.html')
-
-    # First tries
-    # if request.method == "POST":
-    #     users = mongo.db.users
-    #     user_name = users.find_one({'name': request.form['username']})
-    #     user_pass = users.find_one({'password': request.form['password']})
-    #     print(user_name)
-    #     print(user_pass)
-    #     username = request.form.get("username")
-    #     password = request.form.get("password")
-    #     print(username)
-    #     print(password)
-
-    #     if not username in user_name:
-    #         return "Invalide username"
-    #     else:
-    #         user = users[username]
-
-    #     if not password in user_pass:
-    #         return 'Invalid password'
-    #     else:
-    #         user = users[username]
-    #         session["username"] = user["username"]
-    #         return render_template('index.html')
-
-    # return render_template('login.html')
-
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-    # users = mongo.db.users
-    # user_login = users.find_one({'name': request.form['username']})
-    # print(user_login)
-    # if user_login:
-    #     print(request.form['username'])
-    #     print(request.form['pass'])
-    #     print(session['username'])
-    #     print(user_login['password'])
-    #     if bcrypt.hashpw(request.form['pass'].encode['utf-8'], user_login['password'].encode('utf-8')) == user_login['password'].encode('utf-8'):
-    #         session['username'] = request.form['username']
-
-    #         return render_template('index.html')
-    # else:
-    #     flash(f'Invalid username')
-
-    # return render_template('Invalid username or password')
-
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -101,23 +54,6 @@ def register():
             return render_template('index.html', user=user, password=password)
 
     return render_template('register.html')
-
-    # if request.method == 'POST':
-    #     users = mongo.db.users
-    #     user_exists = users.find_one({'name': request.form['username']})
-
-    #     if user_exists is None:
-    #         hashpass = bcrypt.hashpw(
-    #             request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-    #         users.insert_one(
-    #             {'name': request.form['username'], 'password': hashpass})
-    #         session['username'] = request.form['username']
-    #         return redirect(url_for('index'))
-
-    #     return 'The username that you have entered already exists!'
-
-    # return render_template('register.html')
-
 
 @app.route('/logout')
 def logout():
