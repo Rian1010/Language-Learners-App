@@ -1,36 +1,5 @@
 {% extends 'base.html' %}
 
-{% block navbar %}
-<nav class="navbar navbar-expand-sm navbar-light bg-info">
-    <a href="{{ url_for('index') }}" class="navbar-brand navbrand-white">Language Learner's App</a>
-
-    <button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-expanded="navbarNavDropdown" aria-controls="false">
-
-        <span class="navbar-toggler-icon"></span></button>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="index.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="index.html#hp-section2" class="nav-link">Start Learning</a>
-            </li>
-            <li class="nav-item">
-                <a href="index.html#hp-section3" class="nav-link">Planner</a>
-            </li>
-            <li class="nav-item">
-                <a href="index.html#hp-section5" class="nav-link">Community</a>
-            </li>
-            <li class="nav-item">
-                <a href="index.html#hp-section6" class="nav-link">Chat With Us</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-{% endblock %}
-
 {% block content %}
 <section>
     <div class="container">

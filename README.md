@@ -1,7 +1,70 @@
-# Third Milestone Project
+# JavaScript Learning Site
 
-### Python Chat
-The Python codes for the chat are the same as in the lessons of Code Institute. Click [here]() to find the link.
+This project is my third milestone project that I have done on the Full Stack Software Development Course at Code Institute. The main focus of this project was to have a website with instructions of how JavaScript works, so that users can learn it.
+
+## Purpose of This Project
+This is a website that teaches how to use JavaScript. One can go through the different lesson pages, add their own lessons, plan what and when they want to learn something through the time manager and post interesting discoveries about codes on the community page.
+
+- Here is a list of the sections that the website has:
+- Home page: Shows everything that the site has to offer, lesson pages, a task-manager page, a community page and a form, with which a user can send me an email for inquiries. It includes nice pictures and an animation
+- Login/registration page: Allows users to sign in or sign up. The website persists between each user’s login
+- Lesson pages: Those pages have content about how to use JavaScript and the Advanced Learning page has a section at the bottom, where users can add their own lessons. Only the author of the lesson can edit and delete the added lessons.
+- Add lesson page: Enables a user to add a new lesson
+- Edit lesson page: Enables a user to edit their created lesson
+- Task Manager: Users can add multiple tasks to plan what lessons they need to learn, when they want to learn it and they can add a description to it. Each user can only see, edit and delete their own added tasks, not the tasks of any other account
+- Add task page: Enables a user to add a new task to the task manager
+- Edit task page: Enables a user to edit their created task
+- Community: Users can post about interesting discoveries or thoughts on JavaScript codes for others to see. A user can only edit and delete their own posts, not the posts from any other account
+- Add community page: Enables a user to add a new post about JavaScript to the community page
+- Edit community page: Enables a user to edit their posted posts
+
+## UX
+### User Stories
+- As a user, I would like to learn JavaScript for free
+- As a user, I would like to register and login
+- As a user, I would like to see what topics of JavaScript are covered on the website, through the home page
+- As a user, I would like to be able to add lessons, if something important could be added to the website
+- As a user, I would like to have a task-manager, on which I can plan my time
+- As a user, I would like to specify which lessons I want to learn, add quick notes to remember for next time in a small input field, and include a date of when I plan to proceed the learning
+- As a user, I would like to share ideas or discoveries with others about JavaScript and edit or delete the posts, if I want to
+- As a user, I would like to contact the admin of the website for questions about the website and or JavaScript
+- I would like to find contact and social media informations of the website in the footer
+
+## Front-End Design
+The main colours that I chose to use for this website are light blue and white. The font-family that I used was sans serif because I found that it fit the website well. My goal was to make the website look simple with simple looking colours and many pictures in a way that it looks modern. I tried to add motion through an animation on the home page and had the background-image of the boxes on the home page that link to the task-manager and community page attached as fixed.
+
+## Utilised Technologies
+### Languages
+- HTML5
+- CSS3
+- JavaScript
+- Python3
+
+### Frameworks
+- Bootstrap 4
+
+### Database
+- MongoDB
+
+### API
+- EmailJS
+
+### Validators
+
+### Other Tools
+- jQuery
+- Github: hosts the website
+- Git: version control
+- VSCode: code editor
+- Flask 
+- Pymongo
+- BSON
+
+## Process
+### Flask 
+I learned almost all of the code that I wrote with flask at [Code Institute](https://codeinstitute.net/). However, there were some things I tried to do through research and the help of tutors from Code Institute.
+
+One of those things was the registration functionality.
 
 ## Get the .gitignore file
 - touch .gitignore
