@@ -32,7 +32,7 @@
 {% endblock %}
 
 {% block content %}
-<section>
+<section class="margin-bottom-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center heading-margin">
@@ -40,9 +40,7 @@
 			</div>
 		</div>
 	</div>
-</section>
 
-<section>
 	<div class="container">
 		{% for post in posts %}
 		<div class="row">
@@ -54,16 +52,10 @@
 							<h5>By: {{ post.author }}</h5>
 						</div>
 					</div>
-
-					<div class="d-none d-sm-block">
-						<div class="flex-row">
-							<p>Created: {{ post.initDate }}</p>
-						</div>
-					</div>
 					{% if post.edit_today != "None" %}
 					<div class="d-none d-sm-block">
 						<div class="flex-row">
-						
+							<p>Created: {{ post.initDate }}</p>
 							<p>{{ post.edit_today }}</p>
 						</div>
 					</div>
@@ -102,7 +94,7 @@
 		</div>
 		{% endfor %}
 		<div class="row">
-			<div class="col-12 offset-md-6 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
+			<div class="col-12 offset-md-3 col-md-6 offset-xl-4 col-xl-4 offset-xl-4 justify-content-center circle">
 				<a href="{{ url_for('add_posts') }}" class="add-task-btn">
 					<div class="plus-sign-add-task">
 						<p>+</p>

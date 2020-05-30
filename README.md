@@ -19,7 +19,6 @@ The Python codes for the chat are the same as in the lessons of Code Institute. 
 
 - Install Heroku
 brew tap heroku/brew && brew install heroku
-12:03 am
 
 - Login to Heroku 
 heroku login

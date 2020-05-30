@@ -126,7 +126,7 @@ def logout():
 
 @app.route('/task_manager')
 def task_manager():
-    user = session.get('email')
+    user = session.get('username')
     if user:
         return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
     return render_template('login.html')
@@ -139,7 +139,7 @@ def add_task():
 def insert_task():
     tasks = mongo.db.tasks
     tasks.insert_one({
-        "task_owner": session['email'],
+        "task_owner": session['username'],
         "task_lesson_name": request.form.get('lesson_name'),
         'task_name': request.form.get('task_name'),
         'task_description': request.form.get('task_description'),
@@ -152,7 +152,7 @@ def update_task(task_id):
     task = mongo.db.tasks
     task.update({'_id': ObjectId(task_id)},
                 {
-                "task_owner": session['email'],
+                "task_owner": session['username'],
                 "task_lesson_name": request.form.get('lesson_name'),
                 'task_name': request.form.get('task_name'),
                 'task_description': request.form.get('task_description'),
@@ -215,7 +215,8 @@ def update_post(post_id):
         "author": session['username'],
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
-        "edit_today": datetime.now(),
+        "edit_today": "Edited: {}".format(datetime.now()),
+        # "edit_today": "Edited: {}.{}.{}".format(the_date.strftime("%d"), the_date.strftime("%m"),the_date.strftime("%y")),
         # "initDate": thePost.initDate,
     }})
     return redirect(url_for('community'))
