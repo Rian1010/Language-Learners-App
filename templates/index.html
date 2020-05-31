@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head_js %}
-<!--EmailJS-->
+<!-- EmailJS -->
 <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 <script>
 	(function () {
@@ -9,12 +9,13 @@
 	})();
 </script>
 {% endblock %}
-
+<!-- Page Title -->
 {% block page_title %}
 	Home Page
 {% endblock %}
 
 {% block content %}
+<!-- Banner Picture -->
 <section class="banner-pic" title="Banner picture of a desk with a laptop, book, note book and more things to work or study with on it" id="hp-section1">
 	<div class="container">
 		<div class="row">
@@ -25,6 +26,7 @@
 	</div>
 </section>
 
+<!-- Section to Show and Link to the Lessons -->
 <section class="white-section" id="hp-section2">
 	<div class="container">
 		<div class="row">
@@ -107,6 +109,7 @@
 	</div>
 </section>
 
+<!-- Section to Lead to the Task-Manager -->
 <section class="blue-section" id="hp-section3">
 	<div class="container">
 		<div class="row">
@@ -126,6 +129,7 @@
 	</div>
 </section>
 
+<!-- Animation Section, Just for Nice Design -->
 <section class="grey-section" id="hp-section4">
 	<div class="container-fluid">
 		<div class="row particles-area">
@@ -140,6 +144,7 @@
 	</div>
 </section>
 
+<!-- Section to Link to the Community Page -->
 <section class="blue-section" id="hp-section5">
 	<div class="container">
 		<div class="row">
@@ -157,6 +162,7 @@
 	</div>
 </section>
 
+<!-- Section for Users to Fill Out A Form In Order to Send The Creator of the Website An Email, If They Wish To Do So -->
 <section class="white-section" id="hp-section6">
 	<div class="container">
 		<div class="row text-center">
@@ -190,6 +196,8 @@
 {% endblock %}
 
 {% block js_tags %}
+<!-- JavaScript File for the Animation of the Colourful Rectangles -->
 <script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
+<!-- JavaScript File for the Email Form that Works Through EmailJS -->
 <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
 {% endblock %}

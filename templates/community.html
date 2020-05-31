@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+
 {% block page_title %}
 	Community
 {% endblock %}
+
 {% block content %}
 <section class="margin-bottom-section">
+	<!-- Page Heading -->
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center heading-margin">
@@ -11,7 +14,7 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- Post Contents Added by Users -->
 	<div class="container">
 		{% for post in posts %}
 		<div class="row">

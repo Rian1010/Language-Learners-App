@@ -3,12 +3,16 @@ from datetime import datetime
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+if os.path.exists("env.py"):
+  import env 
 
 app = Flask(__name__, template_folder='templates')
 
 # MongoDB cluster and URI information to connect to it
 app.config["MONGO_DBNAME"] = 'myFirstCluster'
-app.config["MONGO_URI"] = 'mongodb+srv://Rian:j4JWQ1Ntzc9u0U7m@myfirstcluster-ges2b.mongodb.net/learner-app-data?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE'
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+
+app.secret_key = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
@@ -120,7 +124,7 @@ def edit_task(task_id):
 @app.route('/delete_task/<task_id>')
 # Allows users to delete their own task
 def delete_task(task_id):
-    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
+    mongo.db.tasks.delete_one({"_id": ObjectId(task_id)})
     return redirect(url_for('task_manager'))
 
 @app.route('/community')
@@ -176,7 +180,7 @@ def edit_post(post_id):
 @app.route('/delete_post/<post_id>')
 # Deletes an added lesson by a user
 def delete_post(post_id):
-    mongo.db.posts.remove({"_id": ObjectId(post_id)})
+    mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
     return redirect(url_for('community'))
 
 @app.route('/lesson_one')
@@ -260,7 +264,6 @@ def advanced_lesson():
     return render_template('advanced-lesson.html', add_lesson=addLesson)
 
 if __name__ == '__main__':
-    app.secret_key = 'mysecret'
     app.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
-            debug=True)
+            debug=os.environ.get('DEVELOPMENT'))

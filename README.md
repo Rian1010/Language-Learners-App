@@ -365,6 +365,9 @@ Also, I want to add more content to the lessons in the future. I planned to add 
     - Tests worked rightly
 - Tested the responsiveness of the website through a phone and the Chrome DevTools on desktop 
 
+## Environment variables
+
+
 ## Deployments and Installations
 ### How to Install Flask
 - sudo pip3 install flask

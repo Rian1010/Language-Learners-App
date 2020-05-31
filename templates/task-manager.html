@@ -3,7 +3,9 @@
 	Task Manager
 {% endblock %}
 {% block content %}
+
 <section class="section-padding section-margin">
+	<!-- Task-Manager Page Heading -->
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
@@ -11,6 +13,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- User's Tasks -->
 	<div class="container">
 		<div class="row">
 			{% for task in tasks %}
@@ -39,7 +42,7 @@
 			{% endif %}
 			{% endfor %}
 
-
+			<!-- Button to Add A Task -->
 			<div class="col-12 col-md-6 col-xl-4 justify-content-center circle">
 				<a href="{{ url_for('add_task') }}" class="add-task-btn">
 					<div class="plus-sign-add-task">
