@@ -12,14 +12,8 @@
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 
-	<!--EmailJS-->
-	<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-	<script>
-		(function () {
-			emailjs.init("user_jBNHynPWhUv5jwDizH0QT");
-		})();
-	</script>
-	<title>Document</title>
+	{% block head_js %}{% endblock %}
+	<title>{% block page_title %}{% endblock %}</title>
 
 </head>
 
@@ -75,7 +69,7 @@
 						<li><a href="http://www.instagram.com" class="footer-link" target="_blank">Instagram</a></li>
 						<li><a href="http://www.facebook.com" class="footer-link" target="_blank">Facebook</a></li>
 						<li><a href="http://www.youtube.com" class="footer-link" target="_blank">Youtube</a></li>
-						<li><a href="http://www.youtube.com" class="footer-link" target="_blank">Twitter</a></li>
+						<li><a href="http://www.twitter.com" class="footer-link" target="_blank">Twitter</a></li>
 					</ul>
 				</div>
 			</div>

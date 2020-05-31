@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
+{% block head_js %}
+<!--EmailJS-->
+<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script>
+	(function () {
+		emailjs.init("user_jBNHynPWhUv5jwDizH0QT");
+	})();
+</script>
+{% endblock %}
+
+{% block page_title %}
+	Home Page
+{% endblock %}
+
 {% block content %}
 <section class="banner-pic" id="hp-section1">
 	<div class="container">

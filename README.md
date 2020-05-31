@@ -1,4 +1,4 @@
-# JavaScript Learning Site
+# Language Learner's App (JavaScript Learning Site)
 
 This project is my third milestone project that I have done on the Full Stack Software Development Course at Code Institute. The main focus of this project was to have a website with instructions of how JavaScript works, so that users can learn it.
 
@@ -282,6 +282,62 @@ However, this did not work rightly, so I put it back to the following way that I
 
 As for the JavaScript EmailJS API, I used the same code as in my second milestone project for it as I had already done the code that I wanted to work on this website. 
 
+## Future Features and Unsolved Problems
+I did not manage to allow users to write in seperate paragraphs in whatever they want to insert to add or edit their own lessons, tasks or posts. I did not have enough time to work on it, but I am planning to implement that in the future through JavaScript.
+
+Something else that I wanted to do was to colour specific word in the lesson boxes of all the lesson pages to make it look a bit like in a code editor. Here is the JavaScript code that I tried:
+
+```javascript
+let words = document.querySelectorAll('.words');
+console.log(words);
+
+words.forEach(word => {
+    let blueWords = ["true", "function", "return", "break", "continue"];
+    let purpleWords = ["for", "forEach", "while", "false", "+", "-", "*", "/", "%"]
+    let orangeWords = ["if", "else"];
+    let yellowWords = ["switch", "case"];
+    let redWords = ["let", "var", "const"];
+
+    let blue = "blue";
+    let purple = "purple";
+    let orange = "orange";
+    let yellow = "yellow";
+    let red = "red";
+
+    function wordColour(array, theColour) {
+        for (i = 0; i <= array.length; i++) {
+            if (word.innerHTML.includes(array[i])) {
+                word.style.color = theColour;
+            }
+        }
+    }
+    wordColour(blueWords, blue);
+    wordColour(purpleWords, purple);
+    wordColour(orangeWords, orange);
+    wordColour(yellowWords, yellow);
+    wordColour(redWords, red);
+})
+
+
+
+
+orangeWords.forEach(orange());
+yellowWords.forEach(yellow());
+redWords.forEach(red());
+
+function orange() {
+    words.style.color = "orange";
+}
+
+function yellow() {
+    words.style.color = "yellow";
+}
+
+function red() {
+    words.style.color = "red";
+}
+```
+
 ## Testing
 - Print statements were used to test and debug python code
 - `console.log()` was used to test JavaScript code
@@ -361,15 +417,15 @@ As for the JavaScript EmailJS API, I used the same code as in my second mileston
 
 ## Resources
 #### Images on index.html
-[Pixabay](https://pixabay.com/photos/notebook-workplace-desk-iphone-336634/)
-[Pixabay](https://pixabay.com/de/photos/code-javascript-programmieren-3337044/)
-[pxhere](https://pxhere.com/en/photo/1446103)
-[pxhere](https://pxhere.com/en/photo/1366348)
-[pxhere](https://pxhere.com/en/photo/860609)
-[pxhere](https://pixabay.com/de/photos/sch%C3%BCler-eingabe-tastatur-text-849825/)
-[pxhere](https://pxhere.com/en/photo/1434873)
-[pxhere](https://pxhere.com/en/photo/1435021)
-[Pixabay](https://pixabay.com/de/illustrations/netz-netzwerk-programmierung-3706562/)
+- [Pixabay](https://pixabay.com/photos/notebook-workplace-desk-iphone-336634/)
+- [Pixabay](https://pixabay.com/de/photos/code-javascript-programmieren-3337044/)
+- [pxhere](https://pxhere.com/en/photo/1446103)
+- [pxhere](https://pxhere.com/en/photo/1366348)
+- [pxhere](https://pxhere.com/en/photo/860609)
+- [pxhere](https://pixabay.com/de/photos/sch%C3%BCler-eingabe-tastatur-text-849825/)
+- [pxhere](https://pxhere.com/en/photo/1434873)
+- [pxhere](https://pxhere.com/en/photo/1435021)
+- [Pixabay](https://pixabay.com/de/illustrations/netz-netzwerk-programmierung-3706562/)
 
 #### Lesson pages banner picture
 [pxhere](https://pxhere.com/en/photo/693080)
