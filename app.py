@@ -26,7 +26,6 @@ def index():
 # User login
 def signin():
     if request.method == 'POST':
-        username = request.form['username']
         email = request.form["email"]
         password = request.form['password']
         userEmail = mongo.db.users.find_one({"email": email})

@@ -159,7 +159,6 @@ I used the help of the tutors to understand flask login functionalities better a
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
     if request.method == 'POST':
-        username = request.form['username']
         email = request.form["email"]
         password = request.form['password']
         userEmail = mongo.db.users.find_one({"email": email})
