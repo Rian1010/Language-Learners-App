@@ -126,7 +126,7 @@ def register():
     return render_template('register.html')
 ```
 
-This is the code that I have now. It works just fine, I tested if the correct error shows up, if I enter registration details that already exist, as a test and it worked. Also, registerin a new user also worked correctly.
+This is the code that I have now. It works just fine, I tested if the correct error shows up, if I enter registration details that already exist, as a test and it worked. Also, registerin a new user also worked correctly. The reason why Sipo helped me through his own third milestone project is because another student from Code Institute were trying to do the same thing, so we talked about it and researched for days, while we both needed to hurry. On around the fifth day of working on it and loads of research and not finding a solution that works correctly, Sipo helped us to get it to work correctly. 
 
 As for the login page, I tried to make sense of it and used the code below, but it did not work.
 
@@ -159,8 +159,6 @@ I used the help of the tutors to understand flask login functionalities better a
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
     if request.method == 'POST':
-        username = request.form["username"]
-        user = mongo.db.users.find_one({"username": username})
         email = request.form["email"]
         password = request.form['password']
         userEmail = mongo.db.users.find_one({"email": email})
@@ -175,7 +173,112 @@ def signin():
     return render_template('login.html')
 ```
 
-This code works correctly and the logic behind it is basically that there is a
+This code works correctly and the logic behind it is basically that it checks if the inputed username and password can be found in the database or not. If it is found, a user can login, if not, then an error message that says, 'Invalid email or password', is shown. This then means that user has either entered wrong login information or still needs to register. I tried having the functionality that a user can enter either a username or and email address by including the following two variables: `username = request.form["username"]` and `user = mongo.db.users.find_one({"username": username})`. The `username` variable should grab the inputed username, while the `user` variable should be included into the if statement, such as in, `if userEmail and user and mongo.db.users.find_one({"password": password}):`, so that it would check if the entered username is already in the database or not. However, as I kept getting errors through this, I removed this part because of the little time that I had left for this project. 
+
+Another code that I found out with the help of [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask) and [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp) is for a user to logout.
+
+```python
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/signin')
+```
+
+This function causes a user to be able to logout. I connect this function to a logout button in the navigation bar that only appears, if a user is logged in. If a logged in user clicks on it, the function removes the username session and replaces it with None, as the default value.
+
+Something else that I wanted to do on the community page is to save the time of when each post is posted and to display it on the posts. 
+
+```python
+def community():
+    posts = mongo.db.posts.find()
+    eachPost = mongo.db.posts.find_one()
+    initDate = eachPost['initDate'].strftime("%A %D %H:%M")
+    return render_template('community.html', posts=posts, eachPost=eachPost, initDate=initDate, lesson=mongo.db.lessons.find())
+
+```
+
+This code above, is what I tried first with the help of the course videos, the tutors from Code Institute and [the strftime website](https://strftime.org/). It did not work, but what I was trying to do is to ge the time of when the post was posted from the database with the `eachPost` variable, in the formate I chose with strftime, but as it did not work correctly, I had to find another way of doing it. So, I asked the tutors from Code Institute to help get a better understanding of what I am trying to do, in order to be lead to the right solution. As a result, I got the following code, which works just fine:
+
+```python
+@app.route('/community')
+def community():
+    posts = []
+    for result in mongo.db.posts.find():
+        result["initDate"] = result['initDate'].strftime("%A %D %H:%M")
+        posts.append(result)
+    return render_template('community.html', posts=posts, lesson=mongo.db.lessons.find())
+```
+
+I iterated through the 'posts' collection of the database to return the values of each `initDate` key and tested the variables through print statements.
+
+In order to save the information of the time when a post was posted, I came up with the following function: 
+
+```python 
+@app.route('/insert_post', methods=['GET', 'POST'])
+def insert_post():
+    # returns the community page
+    posts = mongo.db.posts 
+    posts.insert_one({
+        "author": session['username'],
+        "lesson_name": request.form.get("lesson_name"),
+        "post_content": request.form.get("post_content"),
+        # the code below saves the date of posted posts and indicates that a post has not been edited 
+        "initDate": datetime.today(),
+        "edit_today": "Edit: None",
+    })
+    return redirect(url_for('community'))
+```
+
+The `initDate` key, save the current time with datetime.today(), while the `edit_today` key sets its value to 'Edit: None', to show that now edits have been commited after the post. The rest of the code correctly saves the information of the session username, lesson name and post content.
+
+```python
+@app.route('/update_post/<post_id>', methods=['GET', 'POST'])
+def update_post(post_id):
+    # Allows a post to be updated
+    posts = mongo.db.posts
+    thePost = mongo.db.posts.find_one({"_id": ObjectId(post_id)}
+    posts.update_one({'_id': ObjectId(post_id)},
+        "author": session['username'],
+        'lesson_name': request.form.get('lesson_name'),
+        'post_content': request.form.get('post_content'),
+        "edit_today": "Edited: {}.{}.{}".format(the_date.strftime("%d"), the_date.strftime("%m"),the_date.strftime("%y")),
+        "initDate": thePost.initDate,
+    })
+    return redirect(url_for('community'))
+```
+
+What I first tried to do here was to let a update of the lesson name and post content happen for the session username, if a user wanted to change something. This worked, but what did not work was to change the date of the `edit_today` key, withouth affect the `initDate` key's value. So, I had to find a way to keep the `initDate` value the same, while allowing everything else to change.
+
+```python
+@app.route('/update_post/<post_id>', methods=['GET', 'POST'])
+def update_post(post_id):
+    # Allows a post to be updated
+    posts = mongo.db.posts
+    posts.update_one({'_id': ObjectId(post_id)},
+                 { "$set": {
+        "author": session['username'],
+        'lesson_name': request.form.get('lesson_name'),
+        'post_content': request.form.get('post_content'),
+        "edit_today": "Edited: {}".format(datetime.now()),
+    return redirect(url_for('community'))
+```
+
+After trying out multiple ways that did not work rightly, I got it to work like in this code above. The `$set` operator is used to update the specific fields that are being updated in the function and the `edit_today` key correctly saves the latest time that the post was edited on. I used the [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html), the [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/), [W3Schools](https://www.w3schools.com/nodejs/nodejs_mongodb_update.asp) tutors from Code Institute and Slack members to lead me to the correct way of doing this. However, I wanted to format the saved time to only display the day, month and the year with the help of [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp) and the [strftime website](https://strftime.org/). I tried doing the following:
+
+```python
+date_time = datetime.datetime.now()
+```
+Then, in the `$set` operator for the `edit_today` key I tried doing this:
+
+```python
+"edit_today": "Edited: {}.{}.{}".format(date_time.strftime("%d"), date_time.strftime("%m"), date_time.strftime("%y")),
+```
+
+However, this did not work rightly, so I put it back to the following way that I got it to work correctly before because of the little amount of time I had left to complete this project:
+
+```python
+"edit_today": "Edited: {}".format(datetime.now()),
+```
 
 ## Testing
 - Print statements were used to test and debug python code
@@ -202,7 +305,7 @@ This code works correctly and the logic behind it is basically that there is a
     - Test worked rightly, as each account could only see their own added tasks
 - Tested if lessons that are added by users would appear in the lesson option list on the add tasks page
     - Test worked, as it appeared in the option list
-- Tested if removing a lesson that is added by a user would disapper from the lesson option list on the add tasks page
+- Tested if removing a lesson that is added by a user would disappear from the lesson option list on the add tasks page
     - Test worked, as it disappeared from the option list 
 - Tested 
 
