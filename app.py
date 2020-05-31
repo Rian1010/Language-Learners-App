@@ -69,9 +69,9 @@ def logout():
     return redirect('/signin')
 
 @app.route('/task_manager')
+# Renders the task-manager page with the required information from the database in mongoDB, if a user is logged in
+# If a user is not logged in, the login page is rendered instead
 def task_manager():
-    # Renders the task-manager page with the required information from the database in mongoDB, if a user is logged in
-    # If a user is not logged in, the login page is rendered instead
     user = session.get('username')
     if user:
         return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
@@ -124,8 +124,8 @@ def delete_task(task_id):
     return redirect(url_for('task_manager'))
 
 @app.route('/community')
+# Returns the community page with its required information from mongoDB
 def community():
-    # Returns the community page with its required information from mongoDB
     posts = []
     for result in mongo.db.posts.find():
         result["initDate"] = result['initDate'].strftime("%A %D %H:%M")
@@ -134,14 +134,14 @@ def community():
     return render_template('community.html', posts=posts, lesson=mongo.db.lessons.find())
 
 @app.route('/add_posts')
+# renders the add-posts page along with its required information from mongoDB
 def add_posts():
-    # renders the add-posts page along with its required information from mongoDB
     initDate = datetime.today().strftime("%A %D")
     return render_template('add-posts.html', posts=mongo.db.posts.find(), initDate=initDate, lessons=mongo.db.lessons.find())
 
 @app.route('/insert_post', methods=['GET', 'POST'])
+# redirects to the community page
 def insert_post():
-    # redirects to the community page
     posts = mongo.db.posts 
     posts.insert_one({
         "author": session['username'],
@@ -154,8 +154,8 @@ def insert_post():
     return redirect(url_for('community'))
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
+# Allows a post to be updated and redirects to the community page
 def update_post(post_id):
-    # Allows a post to be updated and redirects to the community page
     posts = mongo.db.posts
     posts.update_one({'_id': ObjectId(post_id)},
                  { "$set": {

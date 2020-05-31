@@ -404,6 +404,7 @@ Also, I want to add more content to the lessons in the future. I planned to add 
 ### Lesson contents
 - [SoloLearn](https://www.sololearn.com/)
 - [W3Schools](https://www.w3schools.com/)
+- [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
 
 #### Images on index.html
 - [Pixabay](https://pixabay.com/photos/notebook-workplace-desk-iphone-336634/)
@@ -417,7 +418,15 @@ Also, I want to add more content to the lessons in the future. I planned to add 
 - [Pixabay](https://pixabay.com/de/illustrations/netz-netzwerk-programmierung-3706562/)
 
 #### Lesson pages banner picture
-[pxhere](https://pxhere.com/en/photo/693080)
+- [pxhere](https://pxhere.com/en/photo/693080)
+
+#### More Resources Used In Reasearch
+- [strftime website](https://strftime.org/)
+- [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
+- [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/)
+- [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html)
+- [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
+- [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp)
 
 ## Acknowledgements 
 I was inspired to do this project by [Code Institute](https://codeinstitute.net/). Thank you to my mentors, Antonija Šimić  Brian Macharia to guide me throughout the process of the project! Thank you to the tutors, Michael, Tim, Xavier, Anna, Stephan, Kevin, Samantha, Haley, Luca and Niel for helping me with the problems that I encountered.

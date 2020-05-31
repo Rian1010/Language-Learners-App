@@ -9,6 +9,7 @@
     justify-content: space-around;
 }
 
+/* Green, circular button that allows users to add lessons, posts or tasks */
 .circle {
     width: 290px;
     height: 300px;
