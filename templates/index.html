@@ -175,3 +175,8 @@
 	</div>
 </section>
 {% endblock %}
+
+{% block js_tags %}
+<script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+{% endblock %}

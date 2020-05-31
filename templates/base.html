@@ -92,12 +92,8 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 	</script>
 
-
-	<script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/lessons.js') }}"></script>
-
+	{% block js_tags %}{% endblock %}
+		
 </body>
 
 </html>
