@@ -373,6 +373,8 @@ As for the JavaScript EmailJS API, I used the same code as in my second mileston
 - Tested if the phone and email contact information worked rightly from the footer by clicking on them
     - Tests worked rightly
 - Tested the responsiveness of the website through a phone and the Chrome DevTools on desktop 
+- Tested if any page from the navigation bar can be reached without loging in
+    - Test worked as those pages could not be reached
 
 ## Environment and Configuration Variables
 #### Local Variables
