@@ -1,6 +1,6 @@
 # Language Learner's App (JavaScript Learning Site)
 
-This project is my third milestone project that I have done on the Full Stack Software Development Course at Code Institute. The main focus of this project was to have a website with instructions of how JavaScript works, so that users can learn it.
+This project is my third milestone project that I have done on the Full Stack Software Development Course at Code Institute. The main focus of this project was to have a website with instructions of how JavaScript works, so that users can learn it. The project is published [here](https://language-learners-app.herokuapp.com/)
 
 ## Purpose of This Project
 This is a website that teaches how to use JavaScript. One can go through the different lesson pages, add their own lessons, plan what and when they want to learn something through the time manager and post interesting discoveries about codes on the community page.
@@ -415,6 +415,8 @@ The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_
 - git commit -m "Added Procfile"
 - git push heroku master
 - heroku ps:scale web=1
+- For the website to work on Heroku, the statics must be disabled, through `DISABLE_COLLECTSTATIC=1`
+
 
 ## Resources
 ### Lesson contents

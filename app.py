@@ -79,7 +79,7 @@ def task_manager():
     user = session.get('username')
     if user:
         return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
-    return render_template('login.html')
+    return render_template('register.html')
 
 @app.route('/add_tasks')
 # Renders the add-task page
@@ -130,12 +130,17 @@ def delete_task(task_id):
 @app.route('/community')
 # Returns the community page with its required information from mongoDB
 def community():
-    posts = []
-    for result in mongo.db.posts.find():
-        result["initDate"] = result['initDate'].strftime("%A %D %H:%M")
-        print(result['initDate'])
-        posts.append(result)
-    return render_template('community.html', posts=posts, lesson=mongo.db.lessons.find())
+    username = session.get('username')
+    if username:
+        posts = []
+        for result in mongo.db.posts.find():
+            result["initDate"] = result['initDate'].strftime("%A %D %H:%M")
+            print(result['initDate'])
+            posts.append(result)
+        return render_template('community.html', posts=posts, lesson=mongo.db.lessons.find())
+    else: 
+        return render_template('register.html')
+
 
 @app.route('/add_posts')
 # renders the add-posts page along with its required information from mongoDB
