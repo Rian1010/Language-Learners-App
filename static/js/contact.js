@@ -29,7 +29,11 @@ window.onload = function() {
     const emailBox = document.querySelector('#email');
     const MsgBox = document.querySelector('#message');
 
-    submitBtn.addEventListener('click', sendMsg);
+    submitBtn.addEventListener('click', function(event) {
+        // This prevents the default action of the form and then calls the sendMsg function
+        event.preventDefault();
+        sendMsg();
+    });
 
     function sendMsg() {
         let nameContent = nameBox.value;

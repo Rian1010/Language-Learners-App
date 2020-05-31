@@ -374,5 +374,5 @@ As for the JavaScript EmailJS API, I used the same code as in my second mileston
 #### Lesson pages banner picture
 [pxhere](https://pxhere.com/en/photo/693080)
 
-planner
-[Pixabay](https://pixabay.com/de/photos/routenplaner-2019-jahr-kalender-3820633/)
+## Acknowledgements 
+I was inspired to do this project by [Code Institute](https://codeinstitute.net/). Thank you to my mentors, Antonija Šimić  Brian Macharia to guide me throughout the process of the project! Thank you to the tutors, Michael, Tim, Xavier, Anna, Stephan, Kevin, Samantha, Haley, Luca and Niel for helping me with the problems that I encountered.
