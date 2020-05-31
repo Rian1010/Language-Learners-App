@@ -50,6 +50,10 @@ The main colours that I chose to use for this website are light blue and white. 
 - EmailJS
 
 ### Validators
+- [PEP8 Validator](http://pep8online.com/)
+- [JavaScript Validator](https://jshint.com/)
+- [CSS Validator](http://csslint.net/)
+- [HTML Validator](https://www.freeformatter.com/html-validator.html)
 
 ### Other Tools
 - jQuery
@@ -457,6 +461,10 @@ The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_
 - [his third milestone project](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py)
 - [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
 - [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/)
+- [PEP8 Validator](http://pep8online.com/)
+- [JavaScript Validator](https://jshint.com/)
+- [CSS Validator](http://csslint.net/)
+- [HTML Validator](https://www.freeformatter.com/html-validator.html)
 
 ## Acknowledgements 
 I was inspired to do this project by [Code Institute](https://codeinstitute.net/). Thank you to my mentors, Antonija Šimić  Brian Macharia to guide me throughout the process of the project! Thank you to the tutors, Michael, Tim, Xavier, Anna, Stephan, Kevin, Samantha, Haley, Luca and Niel for helping me with the problems that I encountered.
