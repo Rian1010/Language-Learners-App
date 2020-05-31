@@ -60,6 +60,56 @@ The main colours that I chose to use for this website are light blue and white. 
 - Pymongo
 - BSON
 
+## Features
+### Existing Features
+- EmailJS API for users to send me emails
+- Users can add their own lessons, tasks and posts 
+- Users can only edit and delete posts, tasks and lessons from their own accounts, these cannot be edited or deleted from any other account
+- Users can view other's posts and lessons
+- Users can only see their own tasks and no tasks of other accounts
+- Every lessons that a user adds gets included into the option list, when wanting to select a lesson on the add tasks page and the edit tasks page 
+
+### Future Features and Unsolved Problems
+I did not manage to allow users to write in seperate paragraphs in whatever they want to insert to add or edit their own lessons, tasks or posts. I did not have enough time to work on it, but I am planning to implement that in the future through JavaScript.
+
+Something else that I wanted to do was to colour specific word in the lesson boxes of all the lesson pages to make it look a bit like in a code editor. Here is the JavaScript code that I tried:
+
+```javascript
+let words = document.querySelectorAll('.words');
+console.log(words);
+
+words.forEach(word => {
+    let blueWords = ["true", "function", "return", "break", "continue"];
+    let purpleWords = ["for", "forEach", "while", "false", "+", "-", "*", "/", "%"]
+    let orangeWords = ["if", "else"];
+    let yellowWords = ["switch", "case"];
+    let redWords = ["let", "var", "const"];
+
+    let blue = "blue";
+    let purple = "purple";
+    let orange = "orange";
+    let yellow = "yellow";
+    let red = "red";
+
+    function wordColour(array, theColour) {
+        for (i = 0; i <= array.length; i++) {
+            if (word.innerHTML.includes(array[i])) {
+                word.style.color = theColour;
+            }
+        }
+    }
+    wordColour(blueWords, blue);
+    wordColour(purpleWords, purple);
+    wordColour(orangeWords, orange);
+    wordColour(yellowWords, yellow);
+    wordColour(redWords, red);
+})
+```
+
+I tried using this function and forEach loop that I made by myself, but would turn an entire paragraph to the colour that assigned to the word, instead of just the single word. Due to the little amount of time that I had left for this project, I did not continue trying it. 
+
+Also, I want to add more content to the lessons in the future. I planned to add more than there currently are, but I did not manage to write more because of timing. 
+
 ## Process
 ### Flask 
 I learned almost all of the code that I wrote with flask at [Code Institute](https://codeinstitute.net/). However, there were some things I tried to do through research and the help of tutors from Code Institute. Two of those things were the login and registration functionalities.
@@ -282,47 +332,6 @@ However, this did not work rightly, so I put it back to the following way that I
 
 As for the JavaScript EmailJS API, I used the same code as in my second milestone project for it as I had already done the code that I wanted to work on this website. 
 
-## Future Features and Unsolved Problems
-I did not manage to allow users to write in seperate paragraphs in whatever they want to insert to add or edit their own lessons, tasks or posts. I did not have enough time to work on it, but I am planning to implement that in the future through JavaScript.
-
-Something else that I wanted to do was to colour specific word in the lesson boxes of all the lesson pages to make it look a bit like in a code editor. Here is the JavaScript code that I tried:
-
-```javascript
-let words = document.querySelectorAll('.words');
-console.log(words);
-
-words.forEach(word => {
-    let blueWords = ["true", "function", "return", "break", "continue"];
-    let purpleWords = ["for", "forEach", "while", "false", "+", "-", "*", "/", "%"]
-    let orangeWords = ["if", "else"];
-    let yellowWords = ["switch", "case"];
-    let redWords = ["let", "var", "const"];
-
-    let blue = "blue";
-    let purple = "purple";
-    let orange = "orange";
-    let yellow = "yellow";
-    let red = "red";
-
-    function wordColour(array, theColour) {
-        for (i = 0; i <= array.length; i++) {
-            if (word.innerHTML.includes(array[i])) {
-                word.style.color = theColour;
-            }
-        }
-    }
-    wordColour(blueWords, blue);
-    wordColour(purpleWords, purple);
-    wordColour(orangeWords, orange);
-    wordColour(yellowWords, yellow);
-    wordColour(redWords, red);
-})
-```
-
-I tried using this function and forEach loop that I made by myself, but would turn an entire paragraph to the colour that assigned to the word, instead of just the single word. Due to the little amount of time that I had left for this project, I did not continue trying it. 
-
-Also, I want to add more content to the lessons in the future. I planned to add more than there currently are, but I did not manage to write more because of timing. 
-
 ## Testing
 - Print statements were used to test and debug python code
 - `console.log()` was used to test JavaScript code
@@ -365,8 +374,12 @@ Also, I want to add more content to the lessons in the future. I planned to add 
     - Tests worked rightly
 - Tested the responsiveness of the website through a phone and the Chrome DevTools on desktop 
 
-## Environment variables
+## Environment and Configuration Variables
+#### Local Variables
+The local variables that I have for this project are in an env.py file. The environment variables that I have in that file are called 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT', which have the values that are required in the app.py file for the mongo URI password, the secret key password and the debug value. As 'DEVELOPMENT' takes care of the debug value, it is set to True locally.
 
+#### Heroku Configuration Variables
+The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT' variables. The 'SECRET_KEY' and 'MONGO_URI' contain the same passwords on Heroku as they do locally in the env.py file. The 'DEVELOPMENT' variable is set to True, while I am working on it, but it is set to False when submitting the project, after working on it.
 
 ## Deployments and Installations
 ### How to Install Flask
@@ -430,6 +443,16 @@ Also, I want to add more content to the lessons in the future. I planned to add 
 - [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html)
 - [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
 - [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp)
+- [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
+- [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp)
+- [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html)
+- [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
+- [Code Institute](https://codeinstitute.net/)
+- [YouTube video](https://www.youtube.com/watch?v=vVx1737auSE)
+- [PrettyPrinted](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)
+- [his third milestone project](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py)
+- [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
+- [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/)
 
 ## Acknowledgements 
 I was inspired to do this project by [Code Institute](https://codeinstitute.net/). Thank you to my mentors, Antonija Šimić  Brian Macharia to guide me throughout the process of the project! Thank you to the tutors, Michael, Tim, Xavier, Anna, Stephan, Kevin, Samantha, Haley, Luca and Niel for helping me with the problems that I encountered.
