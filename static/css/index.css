@@ -4,7 +4,7 @@
 }
 
 .section-margin {
-    margin: 50px 0;
+    margin: 77px 0;
     min-height: 60vh;
 }
 
@@ -12,14 +12,6 @@
     .section-margin {
         margin: 150px 0;
     }
-    .margin-bottom-section {
-        margin-bottom: 200px;
-    }
-}
-@media (min-width: 576px) {
-    .margin-bottom-section {
-        margin-bottom: 300px;
-    }    
 }
 
 /* Home Page */

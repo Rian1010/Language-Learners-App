@@ -149,7 +149,7 @@ def insert_post():
         "post_content": request.form.get("post_content"),
         # the code below saves the date of posted posts and indicates that a post has not been edited 
         "initDate": datetime.today(),
-        "edit_today": "Edit: None",
+        "edit_today": None,
     })
     return redirect(url_for('community'))
 
@@ -162,7 +162,7 @@ def update_post(post_id):
         "author": session['username'],
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
-        "edit_today": "Edited: {}".format(datetime.now()),
+        "edit_today": datetime.now(),
     }})
     return redirect(url_for('community'))
 
