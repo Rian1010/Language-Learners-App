@@ -25,19 +25,24 @@ def index():
 @app.route('/signin', methods=["GET", "POST"])
 # User login
 def signin():
-    if request.method == 'POST':
-        email = request.form["email"]
-        password = request.form['password']
-        userEmail = mongo.db.users.find_one({"email": email})
+    username = session.get('username')
+    if username:
+        users = mongo.db.users.find()
+        return render_template('index.html', users=users)
+    else:
+        if request.method == 'POST':
+            email = request.form["email"]
+            password = request.form['password']
+            userEmail = mongo.db.users.find_one({"email": email})
 
-        if userEmail and mongo.db.users.find_one({"password": password}):
-            session['username'] = userEmail["username"]
-            print(session['username'])
-            return render_template('index.html')
-        else:
-            return 'Invalid email or password'
+            if userEmail and mongo.db.users.find_one({"password": password}):
+                session['username'] = userEmail["username"]
+                print(session['username'])
+                return render_template('index.html')
+            else:
+                return 'Invalid email or password'
 
-    return render_template('login.html')
+        return render_template('login.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 # User registration
