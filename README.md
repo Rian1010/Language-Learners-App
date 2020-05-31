@@ -317,26 +317,11 @@ words.forEach(word => {
     wordColour(yellowWords, yellow);
     wordColour(redWords, red);
 })
-
-
-
-
-orangeWords.forEach(orange());
-yellowWords.forEach(yellow());
-redWords.forEach(red());
-
-function orange() {
-    words.style.color = "orange";
-}
-
-function yellow() {
-    words.style.color = "yellow";
-}
-
-function red() {
-    words.style.color = "red";
-}
 ```
+
+I tried using this function and forEach loop that I made by myself, but would turn an entire paragraph to the colour that assigned to the word, instead of just the single word. Due to the little amount of time that I had left for this project, I did not continue trying it. 
+
+Also, I want to add more content to the lessons in the future. I planned to add more than there currently are, but I did not manage to write more because of timing. 
 
 ## Testing
 - Print statements were used to test and debug python code
@@ -416,6 +401,10 @@ function red() {
 - heroku ps:scale web=1
 
 ## Resources
+### Lesson contents
+- [SoloLearn](https://www.sololearn.com/)
+- [W3Schools](https://www.w3schools.com/)
+
 #### Images on index.html
 - [Pixabay](https://pixabay.com/photos/notebook-workplace-desk-iphone-336634/)
 - [Pixabay](https://pixabay.com/de/photos/code-javascript-programmieren-3337044/)
