@@ -35,19 +35,21 @@ The main colours that I chose to use for this website are light blue and white. 
 
 ## Utilised Technologies
 ### Languages
-- HTML5
-- CSS3
-- JavaScript
-- Python3
+- HTML5: As mark-up language
+- CSS3: For styling
+- JavaScript: To add functionalities and animations in the front end
+- Python3: To add functionalities through the back-end
+- Jinja2: Python web template engine
+- Flask: Python framework to work with in the back-end
 
 ### Frameworks
-- Bootstrap 4
+- Bootstrap 4: For responsive web designing 
 
 ### Database
-- MongoDB
+- MongoDB: To store information into a database
 
 ### API
-- EmailJS
+- EmailJS: Allow users to send me a well formatted email 
 
 ### Validators
 - [PEP8 Validator](http://pep8online.com/)
