@@ -34,11 +34,15 @@ This is a website that teaches how to use JavaScript. One can go through the dif
 The main colours that I chose to use for this website are light blue and white. The font-family that I used was sans serif because I found that it fit the website well. My goal was to make the website look simple with simple looking colours and many pictures in a way that it looks modern. I tried to add motion through an animation on the home page and had the background-image of the boxes on the home page that link to the task-manager and community page attached as fixed.
 
 ## Wireframes
+- [Login page](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-login-page-wireframe.jpeg)
+- [Registration page](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-registration-page-wireframe.jpeg)
 - [Homepage](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-homepage-wireframe.jpeg)
 - [Task-manager page](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-task-manager-wireframe.jpeg)
 - [Community page](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-community-wireframe.jpeg)
 - [Lesson Pages](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-lessons-wireframe.jpeg)
 - [Pages to add or edit lessons, tasks or posts](https://github.com/Rian1010/Language-Learners-App/blob/master/wireframes/flask-add-edit-wireframe.jpeg)
+
+Some of the ideas that are shown in the wireframes have been changed throughout the process of the website for better design and logic.
 
 ## Utilised Technologies
 ### Languages
