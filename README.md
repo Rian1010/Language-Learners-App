@@ -39,8 +39,6 @@ The main colours that I chose to use for this website are light blue and white. 
 - CSS3: For styling
 - JavaScript: To add functionalities and animations in the front end
 - Python3: To add functionalities through the back-end
-- Jinja2: Python web template engine
-- Flask: Python framework to work with in the back-end
 
 ### Frameworks
 - Bootstrap 4: For responsive web designing 
@@ -58,13 +56,12 @@ The main colours that I chose to use for this website are light blue and white. 
 - [HTML Validator](https://www.freeformatter.com/html-validator.html)
 
 ### Other Tools
-- jQuery
+- jQuery: JavaScript library
 - Github: hosts the website
 - Git: version control
 - VSCode: code editor
-- Flask 
-- Pymongo
-- BSON
+- Flask: Python framework to work with in the back-end
+- Jinja2: Python web template engine
 
 ## Features
 ### Existing Features
