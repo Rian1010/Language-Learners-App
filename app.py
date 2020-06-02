@@ -51,8 +51,8 @@ def signin():
 
 
 @app.route('/register', methods=['POST', 'GET'])
-# User registration
 """
+User registration
 This source was used for assistence: https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py
 """
 def register():
@@ -73,8 +73,8 @@ def register():
 
 
 @app.route('/logout')
-# Allows a user to logout 
 """
+Allows a user to logout 
 These sources were used for assistance:
 https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
 https://www.w3schools.com/python/ref_dictionary_pop.asp
@@ -85,8 +85,10 @@ def logout():
 
 
 @app.route('/task_manager')
-# Renders the task-manager page with the required information from the database in mongoDB, if a user is logged in
-# If a user is not logged in, the login page is rendered instead
+"""
+Renders the task-manager page with the required information from the database in mongoDB, if a user is logged in.
+If a user is not logged in, the login page is rendered instead
+"""
 def task_manager():
     user = session.get('username')
     if user:
@@ -146,8 +148,10 @@ def delete_task(task_id):
 
 
 @app.route('/community')
-# Returns the community page with its required information from mongoDB
-# This source was used for assistance: https://strftime.org/
+"""
+Returns the community page with its required information from mongoDB
+This source was used for assistance: https://strftime.org/
+"""
 def community():
     username = session.get('username')
     if username:
@@ -162,16 +166,20 @@ def community():
 
 
 @app.route('/add_posts')
-# renders the add-posts page along with its required information from mongoDB
-# This source was used for assistance: https://strftime.org/
+"""
+renders the add-posts page along with its required information from mongoDB
+This source was used for assistance: https://strftime.org/
+"""
 def add_posts():
     initDate = datetime.today().strftime("%A %D")
     return render_template('add-posts.html', posts=mongo.db.posts.find(), initDate=initDate, lessons=mongo.db.lessons.find())
 
 
 @app.route('/insert_post', methods=['GET', 'POST'])
-# redirects to the community page
-# This source was used for assistance: https://www.w3schools.com/python/python_datetime.asp
+"""
+Redirects to the community page
+This source was used for assistance: https://www.w3schools.com/python/python_datetime.asp
+"""
 def insert_post():
     posts = mongo.db.posts 
     posts.insert_one({
@@ -186,8 +194,8 @@ def insert_post():
 
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
-# Allows a post to be updated and redirects to the community page
 """
+Allows a post to be updated and redirects to the community page
 These sources were used for assistance: 
 https://strftime.org/
 https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/ 
