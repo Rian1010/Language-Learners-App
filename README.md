@@ -84,7 +84,7 @@ Some of the ideas that are shown in the wireframes have been changed throughout 
 - Every lesson that a user adds gets included into the option list on the add tasks page and the edit tasks page 
 
 ### Future Features and Unsolved Problems
-I did not manage to allow users to write in seperate paragraphs in whatever they want to insert to add or edit their own lessons, tasks or posts. I did not have enough time to work on it, but I am planning to implement that in the future through JavaScript.
+I did not manage to allow users to post seperate paragraphs in the text they want to add or edit on the advanced lessons, task-manager or community page, through a textbox. I tried researching about how to implement that functionality, but it very hard to find, so, due to the limited time I have left, I am leaving it as future implementation.
 
 Something else that I wanted to do was to colour specific words in the lesson boxes of all the lesson pages to make it look a bit like in a code editor. Here is the JavaScript code that I tried:
 
@@ -122,7 +122,7 @@ words.forEach(word => {
 
 I tried using this function and forEach loop that I made by myself, but it would turn an entire paragraph to the colour that is supposed to be assigned to the word, instead of just the single word. Due to the little amount of time that I had left for this project, I did not continue trying it. 
 
-Also, I want to add more content to the lessons in the future. I planned to add more than there currently are, but I did not manage to write more because of timing. 
+Also, I want to add more content to the lessons in the future. I planned to add more than there currently are, but I did not manage to write more because of the short amount of time that I have left for this project. 
 
 ## Process
 ### Flask 
