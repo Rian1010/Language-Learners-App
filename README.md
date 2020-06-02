@@ -48,7 +48,7 @@ Some of the ideas that are shown in the wireframes have been changed throughout 
 ### Languages
 - HTML5: As mark-up language
 - CSS3: For styling
-- JavaScript: To add functionalities and animations in the front end
+- JavaScript: To add functionalities and animations in the front-end
 - Python3: To add functionalities through the back-end
 
 ### Frameworks
@@ -78,15 +78,15 @@ Some of the ideas that are shown in the wireframes have been changed throughout 
 ### Existing Features
 - EmailJS API for users to send me emails
 - Users can add their own lessons, tasks and posts 
-- Users can only edit and delete posts, tasks and lessons from their own accounts, these cannot be edited or deleted from any other account
+- Users can edit and delete posts, tasks and lessons only from their own accounts, these cannot be edited or deleted from any other user account
 - Users can view other's posts and lessons
 - Users can only see their own tasks and no tasks of other accounts
-- Every lessons that a user adds gets included into the option list, when wanting to select a lesson on the add tasks page and the edit tasks page 
+- Every lesson that a user adds gets included into the option list on the add tasks page and the edit tasks page 
 
 ### Future Features and Unsolved Problems
 I did not manage to allow users to write in seperate paragraphs in whatever they want to insert to add or edit their own lessons, tasks or posts. I did not have enough time to work on it, but I am planning to implement that in the future through JavaScript.
 
-Something else that I wanted to do was to colour specific word in the lesson boxes of all the lesson pages to make it look a bit like in a code editor. Here is the JavaScript code that I tried:
+Something else that I wanted to do was to colour specific words in the lesson boxes of all the lesson pages to make it look a bit like in a code editor. Here is the JavaScript code that I tried:
 
 ```javascript
 let words = document.querySelectorAll('.words');
@@ -120,13 +120,13 @@ words.forEach(word => {
 })
 ```
 
-I tried using this function and forEach loop that I made by myself, but would turn an entire paragraph to the colour that assigned to the word, instead of just the single word. Due to the little amount of time that I had left for this project, I did not continue trying it. 
+I tried using this function and forEach loop that I made by myself, but it would turn an entire paragraph to the colour that is supposed to be assigned to the word, instead of just the single word. Due to the little amount of time that I had left for this project, I did not continue trying it. 
 
 Also, I want to add more content to the lessons in the future. I planned to add more than there currently are, but I did not manage to write more because of timing. 
 
 ## Process
 ### Flask 
-I learned almost all of the code that I wrote with flask at [Code Institute](https://codeinstitute.net/). However, there were some things I tried to do through research and the help of tutors from Code Institute. Two of those things were the login and registration functionalities.
+I learned almost all of the code that I wrote with flask at [Code Institute](https://codeinstitute.net/). However, there were some things I tried to do through lots of research and the help of tutors and Slack members from Code Institute. Two of those things were the login and registration functionalities.
 
 At first, I tried to research how to make a login functionality and found a [YouTube video](https://www.youtube.com/watch?v=vVx1737auSE) by [PrettyPrinted](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)that showed how to do it, using bcrypt. 
 
@@ -147,7 +147,7 @@ if request.method == 'POST':
 
     return render_template('register.html')
 ```
-This is the code that I had tried at first for the registration functionality from the video. It gave me an idea of how to get new inputed user information and grab their given details and how to create a session, all if the user did not exist in the database already. Otherwise, if those details did match, the new user would not be able to register with that information. This code did not work, so I used print statements to try to debug it and researched more about it, but the sources that I found became quite complicate and I had little time to finish the project, as it was one of the last things that I was trying to do. Therefore, I was trying to find another easier way to do it, although I liked that it would be so easy to encrypt passwords in the database through bcrypt.
+This is the code that I had tried at first for the registration functionality from the video. It gave me an idea of how to get new inputed user information, grab their given details and how to create a session, all if the user did not exist in the database already. Otherwise, if those details did match, the new user would not be able to registrate with that information. This code did not work, so I used print statements to try to debug it and researched more about it, but the sources that I found became quite complicated and I had little time to finish the project, as it was one of the last things that I was trying to do. Therefore, I was trying to find another easier way to do it, although I liked that it would be so easy to encrypt passwords in the database through bcrypt.
 
 On the other hand, I had also tried to make a login functionality by using the same video for bcrypt and it worked! Here is the code that I had firstly used with bcrypt: 
 
@@ -169,7 +169,7 @@ def login():
 
 I changed it later on, because bcrypt for registration looked quite complicated on other sources, while I did not have much time left to finish the project, so I found simpler ways of making a login and registration forms.
 
-So, after multiple days of lots of research and trying things out a Slack member, called Sipo from the Code Institute course helped me and so, I managed to find a way to get the registration function to work. He helped me by using the knowledge he got from doing [his third milestone project](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py). 
+So, after multiple days of lots of research and trying things out, a Slack member, called Sipo from the Code Institute course helped me and so, I managed to find a way to get the registration function to work. He helped me by using the knowledge he got from doing [his third milestone project](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py). 
 
 ```python
 @app.route('/register', methods=['POST', 'GET'])
@@ -190,7 +190,7 @@ def register():
     return render_template('register.html')
 ```
 
-This is the code that I have now. It works just fine, I tested if the correct error shows up, if I enter registration details that already exist, as a test and it worked. Also, registerin a new user also worked correctly. The reason why Sipo helped me through his own third milestone project is because another student from Code Institute were trying to do the same thing, so we talked about it and researched for days, while we both needed to hurry. On around the fifth day of working on it and loads of research and not finding a solution that works correctly, Sipo helped us to get it to work correctly. 
+This is the code that I have now. It works just fine, I tested if the correct error shows up, if I enter registration details that already exist and it worked. Also, registering a new user worked correctly too. The reason why Sipo helped me through his own third milestone project is because another student from Code Institute and I were trying to get user authentication to work on our projects, so we talked about it and researched for days, while we both needed to hurry. On around the fifth day of working on it and loads of research and not finding a solution that works correctly, Sipo helped us to get it to work correctly. 
 
 As for the login page, I tried to make sense of it and used the code below, but it did not work.
 
@@ -217,7 +217,7 @@ As for the login page, I tried to make sense of it and used the code below, but 
     return render_template('login.html')
 ```
 
-I used the help of the tutors to understand flask login functionalities better and with their help I wrote this code above. However, since it did not work, I tried a make sense of it again with the some help on Slack and got this code below:
+I used the help of the tutors to understand flask login functionalities better and with their help I wrote this code above. However, since it did not work, I tried to make sense of it again and got this code below:
 
 ```python
 @app.route('/signin', methods=["GET", "POST"])
@@ -237,7 +237,7 @@ def signin():
     return render_template('login.html')
 ```
 
-This code works correctly and the logic behind it is basically that it checks if the inputed username and password can be found in the database or not. If it is found, a user can login, if not, then an error message that says, 'Invalid email or password', is shown. This then means that user has either entered wrong login information or still needs to register. I tried having the functionality that a user can enter either a username or and email address by including the following two variables: `username = request.form["username"]` and `user = mongo.db.users.find_one({"username": username})`. The `username` variable should grab the inputed username, while the `user` variable should be included into the if statement, such as in, `if userEmail and user and mongo.db.users.find_one({"password": password}):`, so that it would check if the entered username is already in the database or not. However, as I kept getting errors through this, I removed this part because of the little time that I had left for this project. 
+This code works correctly and the logic behind it, is basically that it checks if the inputed username and password can be found in the database or not. If it is found, a user can login, if not, then an error message that says, 'Invalid email or password', is shown. This then means that a user has either entered wrong login information or still needs to register. I tried having the functionality that a user can enter either a username or an email address by including the following two variables: `username = request.form["username"]` and `user = mongo.db.users.find_one({"username": username})`. The `username` variable should grab the inputed username, while the `user` variable should be included into the if statement, such as would be, `if userEmail and user and mongo.db.users.find_one({"password": password}):`, so that it would check if the entered username is already in the database or not. However, as I kept getting errors through this, I removed this part because of the little time that I had left for this project. 
 
 Another code that I found out with the help of [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask) and [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp) is for a user to logout.
 
@@ -248,7 +248,7 @@ def logout():
     return redirect('/signin')
 ```
 
-This function causes a user to be able to logout. I connect this function to a logout button in the navigation bar that only appears, if a user is logged in. If a logged in user clicks on it, the function removes the username session and replaces it with None, as the default value.
+This function causes a user to be able to logout. I connected this function to a logout button in the navigation bar that only appears, if a user is logged in. If a logged in user clicks on it, the function removes the username session and replaces it with `None`.
 
 Something else that I wanted to do on the community page is to save the time of when each post is posted and to display it on the posts. 
 
@@ -258,10 +258,9 @@ def community():
     eachPost = mongo.db.posts.find_one()
     initDate = eachPost['initDate'].strftime("%A %D %H:%M")
     return render_template('community.html', posts=posts, eachPost=eachPost, initDate=initDate, lesson=mongo.db.lessons.find())
-
 ```
 
-This code above, is what I tried first with the help of the course videos, the tutors from Code Institute and [the strftime website](https://strftime.org/). It did not work, but what I was trying to do is to ge the time of when the post was posted from the database with the `eachPost` variable, in the formate I chose with strftime, but as it did not work correctly, I had to find another way of doing it. So, I asked the tutors from Code Institute to help get a better understanding of what I am trying to do, in order to be lead to the right solution. As a result, I got the following code, which works just fine:
+This code above, is what I tried first with the help of the course videos, the tutors from Code Institute and [the strftime website](https://strftime.org/). It did not work, but what I was trying to do is to get the time of when the post was posted from the database with the `eachPost` variable, in the format I chose with `strftime`, but as it did not work correctly, I had to find another way of doing it. So, I asked the tutors from Code Institute to help me get a better understanding of what I am trying to do, in order to be lead to the right solution. As a result, I got the following code, which works just fine:
 
 ```python
 @app.route('/community')
@@ -293,7 +292,7 @@ def insert_post():
     return redirect(url_for('community'))
 ```
 
-The `initDate` key, save the current time with datetime.today(), while the `edit_today` key sets its value to 'Edit: None', to show that now edits have been commited after the post. The rest of the code correctly saves the information of the session username, lesson name and post content.
+The `initDate` key, saves the current time with datetime.today(), while the `edit_today` key sets its value to 'Edit: None', to show that no edits have been commited after the initial version of the post. The rest of the code correctly saves the information of the session username, lesson name and post content.
 
 ```python
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
@@ -311,7 +310,7 @@ def update_post(post_id):
     return redirect(url_for('community'))
 ```
 
-What I first tried to do here was to let a update of the lesson name and post content happen for the session username, if a user wanted to change something. This worked, but what did not work was to change the date of the `edit_today` key, withouth affect the `initDate` key's value. So, I had to find a way to keep the `initDate` value the same, while allowing everything else to change.
+What I first tried to do here was to let an update of the lesson name and post content happen for the session username, if a user wanted to change something. This worked, but what did not work was to change the date of the `edit_today` key, withouth affect the `initDate` key's value. So, I had to find a way to keep the `initDate` value the same, while allowing everything else to change.
 
 ```python
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
