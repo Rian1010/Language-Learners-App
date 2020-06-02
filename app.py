@@ -51,11 +51,11 @@ def signin():
 
 
 @app.route('/register', methods=['POST', 'GET'])
-"""
-User registration
-This source was used for assistence: https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py
-"""
 def register():
+    """
+    User registration
+    This source was used for assistence: https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py
+    """
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
@@ -73,23 +73,23 @@ def register():
 
 
 @app.route('/logout')
-"""
-Allows a user to logout 
-These sources were used for assistance:
-https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
-https://www.w3schools.com/python/ref_dictionary_pop.asp
-"""
 def logout():
+    """
+    Allows a user to logout 
+    These sources were used for assistance:
+    https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
+    https://www.w3schools.com/python/ref_dictionary_pop.asp
+    """
     session.pop('username', None)
     return redirect('/signin')
 
 
 @app.route('/task_manager')
-"""
-Renders the task-manager page with the required information from the database in mongoDB, if a user is logged in.
-If a user is not logged in, the login page is rendered instead
-"""
 def task_manager():
+    """
+    Renders the task-manager page with the required information from the database in mongoDB, if a user is logged in.
+    If a user is not logged in, the login page is rendered instead
+    """
     user = session.get('username')
     if user:
         return render_template('task-manager.html', tasks=mongo.db.tasks.find(), lessons=mongo.db.lessons.find())
@@ -148,11 +148,11 @@ def delete_task(task_id):
 
 
 @app.route('/community')
-"""
-Returns the community page with its required information from mongoDB
-This source was used for assistance: https://strftime.org/
-"""
 def community():
+    """
+    Returns the community page with its required information from mongoDB
+    This source was used for assistance: https://strftime.org/
+    """
     username = session.get('username')
     if username:
         posts = []
@@ -166,27 +166,27 @@ def community():
 
 
 @app.route('/add_posts')
-"""
-renders the add-posts page along with its required information from mongoDB
-This source was used for assistance: https://strftime.org/
-"""
 def add_posts():
+    """
+    renders the add-posts page along with its required information from mongoDB
+    This source was used for assistance: https://strftime.org/
+    """
     initDate = datetime.today().strftime("%A %D")
     return render_template('add-posts.html', posts=mongo.db.posts.find(), initDate=initDate, lessons=mongo.db.lessons.find())
 
 
 @app.route('/insert_post', methods=['GET', 'POST'])
-"""
-Redirects to the community page
-This source was used for assistance: https://www.w3schools.com/python/python_datetime.asp
-"""
 def insert_post():
+    """
+    Redirects to the community page
+    This source was used for assistance: https://www.w3schools.com/python/python_datetime.asp
+    """
     posts = mongo.db.posts 
     posts.insert_one({
         "author": session['username'],
         "lesson_name": request.form.get("lesson_name"),
         "post_content": request.form.get("post_content"),
-        # the code below saves the date of posted posts and indicates that a post has not been edited 
+        # The code below saves the date of posted posts and indicates that a post has not been edited 
         "initDate": datetime.today(),
         "edit_today": None,
     })
@@ -194,15 +194,15 @@ def insert_post():
 
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
-"""
-Allows a post to be updated and redirects to the community page
-These sources were used for assistance: 
-https://strftime.org/
-https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/ 
-https://api.mongodb.com/python/current/api/pymongo/collection.html
-https://www.w3schools.com/python/python_datetime.asp
-"""
 def update_post(post_id):
+    """
+    Allows a post to be updated and redirects to the community page
+    These sources were used for assistance: 
+    https://strftime.org/
+    https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/ 
+    https://api.mongodb.com/python/current/api/pymongo/collection.html
+    https://www.w3schools.com/python/python_datetime.asp
+    """
     posts = mongo.db.posts
     posts.update_one({'_id': ObjectId(post_id)},
                  {"$set": {
