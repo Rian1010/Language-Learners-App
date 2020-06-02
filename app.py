@@ -52,6 +52,9 @@ def signin():
 
 @app.route('/register', methods=['POST', 'GET'])
 # User registration
+"""
+This source was used for assistence: https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py
+"""
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -71,6 +74,11 @@ def register():
 
 @app.route('/logout')
 # Allows a user to logout 
+"""
+These sources were used for assistance:
+https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
+https://www.w3schools.com/python/ref_dictionary_pop.asp
+"""
 def logout():
     session.pop('username', None)
     return redirect('/signin')
@@ -139,6 +147,7 @@ def delete_task(task_id):
 
 @app.route('/community')
 # Returns the community page with its required information from mongoDB
+# This source was used for assistance: https://strftime.org/
 def community():
     username = session.get('username')
     if username:
@@ -154,6 +163,7 @@ def community():
 
 @app.route('/add_posts')
 # renders the add-posts page along with its required information from mongoDB
+# This source was used for assistance: https://strftime.org/
 def add_posts():
     initDate = datetime.today().strftime("%A %D")
     return render_template('add-posts.html', posts=mongo.db.posts.find(), initDate=initDate, lessons=mongo.db.lessons.find())
@@ -161,6 +171,7 @@ def add_posts():
 
 @app.route('/insert_post', methods=['GET', 'POST'])
 # redirects to the community page
+# This source was used for assistance: https://www.w3schools.com/python/python_datetime.asp
 def insert_post():
     posts = mongo.db.posts 
     posts.insert_one({
@@ -176,6 +187,13 @@ def insert_post():
 
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
 # Allows a post to be updated and redirects to the community page
+"""
+These sources were used for assistance: 
+https://strftime.org/
+https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/ 
+https://api.mongodb.com/python/current/api/pymongo/collection.html
+https://www.w3schools.com/python/python_datetime.asp
+"""
 def update_post(post_id):
     posts = mongo.db.posts
     posts.update_one({'_id': ObjectId(post_id)},
