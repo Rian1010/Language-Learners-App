@@ -358,55 +358,55 @@ As for the JavaScript EmailJS API, I used the same code as in my second mileston
     - The correct error message occured
 - Tried registering with user information that already exists
     - The correct error message occured
-- Checked if all the hover effects on the navigation bars work correctly and if each button in the navigation bar links to the right web page, after logging in
+- Checked if all the hover effects on the navigation bars work correctly and if each button in the navigation bar links to the right web page
     - Both tests worked rightly
 - Checked if the JavaScript animation and all the css hover effects on the homepage were working correctly 
     - All tests went well
 - Checked if each link on the home page lead to the correct web page
     - All links lead to the right web page
-- Tested if adding lessons to the advanced lessons page worked and if one was able to delete and edit them only through the account of the author of that lesson, not through any other account
-    - Tests worked rightly, as I was able to add, edit and delete only lessons from my account and no other account
-- Tested if adding a task to the task manager and deleting and editing it worked correctly
+- Tested if adding lessons to the advanced lessons page worked and if one was able to delete and edit them only through the user account of the author of that lesson, not through any other account
+    - Tests worked rightly, as I was able to add, edit and delete lessons from only my user account and no other account
+- Tested if adding a task to the task manager, editing it and deleting it worked correctly
     - Tests worked fine, as I was able to do all of it
-- Tested if other accounts could see the tasks added by other accounts
-    - Test worked rightly, as each account could only see their own added tasks
+- Tested if other accounts could see the tasks added from other accounts
+    - Test worked rightly, as each account could only see their own added tasks, not other accounts' tasks
 - Tested if lessons that are added by users would appear in the lesson option list on the add tasks page
     - Test worked, as it appeared in the option list
-- Tested if removing a lesson that is added by a user would disappear from the lesson option list on the add tasks page
-    - Test worked, as it disappeared from the option list 
+- Tested if removing a lesson that is deleted by a user would disappear from the lesson option list on the add tasks page
+    - Test worked, as it disappeared from the option list, after deleting an added lesson by a user account
 - Tried adding a post to the community page, editing it and deleting it
-    - Tests worked as posts got added displaying the correct information and times of when they were posted and showed that it had not been edited yet
+    - Tests worked as posts got added displaying the correct information and times of when they were posted and showed that they had not been edited yet
     - Edits displayed the correct information on the community page and the time of when they were edited was displayed rightly
-    - Deleting posts worked fine too
+    - Deleting posts worked fine too because they vanished, after clicking on the delete button
 - Tried using a different account to edit or delete another account's posts
-    - Test worked correctly, as one account could not edit or delete someone else's posts
-    - Other accounts can only see the posts of other accounts, as they are supposed to
+    - Test worked correctly, as a user account did not have the option to edit or delete someone else's posts
+    - One accounts can only view the posts of other accounts, as they are supposed to, not edit or delete them
 - Tested if sending an email worked from the section at the bottom of the homepage
     - Test worked well, as I received the email
-- Tested if all the links in the footer link to the correct pages by clicking on them
+- Tested if all the links in the footer, link to the correct pages by clicking on them
     - Tests worked correctly
 - Tested if the phone and email contact information worked rightly from the footer by clicking on them
     - Tests worked rightly
 - Tested the responsiveness of the website through a phone and the Chrome DevTools on desktop 
-- Tested if any page from the navigation bar can be reached without loging in
-    - Test worked as those pages could not be reached
+- Tested if any page from the navigation bar can be reached without logging in
+    - Test worked correctly, as those pages could not be reached
 
 ## Environment and Configuration Variables
 #### Local Variables
-The local variables that I have for this project are in an env.py file. The environment variables that I have in that file are called 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT', which have the values that are required in the app.py file for the mongo URI password, the secret key password and the debug value. As 'DEVELOPMENT' takes care of the debug value, it is set to True locally.
+The environment variables that I have for this project are in an env.py file. Those are called 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT', which have the values that are required in the app.py file for the mongo URI password, the secret key password and the debug value. As 'DEVELOPMENT' takes care of the debug value, it is set to True locally.
 
 #### Heroku Configuration Variables
-The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT' variables. The 'SECRET_KEY' and 'MONGO_URI' contain the same passwords on Heroku as they do locally in the env.py file. The 'DEVELOPMENT' variable is set to 1, while I am working on it, but it is set to False when submitting the project, after working on it.
+The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT' variables. The 'SECRET_KEY' and 'MONGO_URI' contain the same passwords on Heroku as they do locally in the env.py file. The 'DEVELOPMENT' variable is set to 1, while I am working on it, but it is set to 0 when submitting the project, after working on it.
 
 ## Deployments and Installations
 ### How to Install Flask
 - sudo pip3 install flask
 
-### Connection Python to MongoDB
+### Connecting Python to MongoDB
 - sudo pip3 install flask-pymongo
 - sudo pip3 install dnspython
 
-### Deployment onto Heroku and Github
+### Deployment to Heroku and Github
 #### Install Homebrew
 - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -423,17 +423,17 @@ The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_
 - git add .
 - git status
 - git commit -m ""
-- git push heroku master
+- git push origin master
 - heroku git:remote -a language-learners-app
 
 #### Add a Procfile and make the website work on Heroku
 - echo web: python app.py > Procfile
 - git add .
 - git commit -m "Added Procfile"
+- git push origin master
 - git push heroku master
 - heroku ps:scale web=1
 - For the website to work on Heroku, the statics must be disabled, through `DISABLE_COLLECTSTATIC=1`
-
 
 ## Resources
 ### Lesson contents
@@ -457,25 +457,20 @@ The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_
 
 #### More Resources Used In Reasearch
 - [strftime website](https://strftime.org/)
-- [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
+- [W3Schools](https://www.w3schools.com/python/python_datetime.asp)
 - [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/)
 - [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html)
 - [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
 - [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp)
-- [Stackoverflow](https://stackoverflow.com/questions/49408509/signout-after-user-disconnects-on-flask)
-- [W3Schools](https://www.w3schools.com/python/ref_dictionary_pop.asp)
 - [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html)
-- [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
 - [Code Institute](https://codeinstitute.net/)
 - [YouTube video](https://www.youtube.com/watch?v=vVx1737auSE)
 - [PrettyPrinted](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)
-- [his third milestone project](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py)
-- [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp)
-- [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/)
+- [Sipo's third milestone project, called Veggit Online Cookbook](https://github.com/sipostudent/Veggit-Online-Cookbook-/blob/master/run.py)
 - [PEP8 Validator](http://pep8online.com/)
 - [JavaScript Validator](https://jshint.com/)
 - [CSS Validator](http://csslint.net/)
 - [HTML Validator](https://www.freeformatter.com/html-validator.html)
 
 ## Acknowledgements 
-I was inspired to do this project by [Code Institute](https://codeinstitute.net/). Thank you to my mentors, Antonija Šimić  Brian Macharia to guide me throughout the process of the project! Thank you to the tutors, Michael, Tim, Xavier, Anna, Stephan, Kevin, Samantha, Haley, Luca and Niel for helping me with the problems that I encountered.
+I was inspired to do this project by [Code Institute](https://codeinstitute.net/). Thank you to my mentors, Antonija Šimić and Brian Macharia to guide me throughout the process of the project! Thank you to the tutors, Michael, Tim, Xavier, Anna, Stephan, Kevin, Samantha, Haley, Luca and Niel for helping me with the problems that I encountered.
