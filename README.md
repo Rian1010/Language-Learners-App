@@ -310,7 +310,7 @@ def update_post(post_id):
     return redirect(url_for('community'))
 ```
 
-What I first tried to do here was to let an update of the lesson name and post content happen for the session username, if a user wanted to change something. This worked, but what did not work was to change the date of the `edit_today` key, withouth affect the `initDate` key's value. So, I had to find a way to keep the `initDate` value the same, while allowing everything else to change.
+What I first tried to do here was to let an update of the lesson name and post content happen for the username in the session, if a user wanted to change something. This worked, but what did not work was to change the date of the `edit_today` key, without affecting the `initDate` key's value. So, I had to find a way to keep the `initDate` value the same, while allowing everything else to change.
 
 ```python
 @app.route('/update_post/<post_id>', methods=['GET', 'POST'])
@@ -323,10 +323,12 @@ def update_post(post_id):
         'lesson_name': request.form.get('lesson_name'),
         'post_content': request.form.get('post_content'),
         "edit_today": "Edited: {}".format(datetime.now()),
+        }
+    })
     return redirect(url_for('community'))
 ```
 
-After trying out multiple ways that did not work rightly, I got it to work like in this code above. The `$set` operator is used to update the specific fields that are being updated in the function and the `edit_today` key correctly saves the latest time that the post was edited on. I used the [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html), the [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/) tutors from Code Institute and Slack members to lead me to the correct way of doing this. However, I wanted to format the saved time to only display the day, month and the year with the help of [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp) and the [strftime website](https://strftime.org/). I tried doing the following:
+After trying out multiple ways that did not work rightly, I got it to work like in the code above. The `$set` operator is used to update the specific fields that are being updated in the function and the `edit_today` key correctly saves the latest time that the post was edited on. I used the [PyMongo Documentation](https://api.mongodb.com/python/current/api/pymongo/collection.html), the [mongoDB Documentation](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/) tutors from Code Institute and Slack members to lead me to the correct way of doing this. However, I wanted to format the saved time to only display the day, month and the year with the help of [this W3Schools web page](https://www.w3schools.com/python/python_datetime.asp) and the [strftime website](https://strftime.org/). I tried doing the following:
 
 ```python
 date_time = datetime.datetime.now()
@@ -337,13 +339,13 @@ Then, in the `$set` operator for the `edit_today` key I tried doing this:
 "edit_today": "Edited: {}.{}.{}".format(date_time.strftime("%d"), date_time.strftime("%m"), date_time.strftime("%y")),
 ```
 
-However, this did not work rightly, so I put it back to the following way that I got it to work correctly before because of the little amount of time I had left to complete this project:
+However, this did not work rightly, so I put it back to the following way that I got it to work correctly with before because of the little amount of time I had left to complete this project:
 
 ```python
 "edit_today": "Edited: {}".format(datetime.now()),
 ```
 
-As for the JavaScript EmailJS API, I used the same code as in my second milestone project for it as I had already done the code that I wanted to work on this website. 
+As for the JavaScript EmailJS API, I used the same code as in my second milestone project for it as I had already done the code that I wanted to function on this website. 
 
 ## Testing
 - Print statements were used to test and debug python code
