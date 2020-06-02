@@ -399,41 +399,49 @@ The environment variables that I have for this project are in an env.py file. Th
 The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT' variables. The 'SECRET_KEY' and 'MONGO_URI' contain the same passwords on Heroku as they do locally in the env.py file. The 'DEVELOPMENT' variable is set to 1, while I am working on it, but it is set to 0 when submitting the project, after working on it.
 
 ## Deployments and Installations
+### Start A Virtual Environment on VSCode
+- `python3 -m venv myvenv`
+- `virtualenv venv`
+- `virtualenv venv --system-site-packages`
+- `source venv/bin/activate`
+
 ### How to Install Flask
-- sudo pip3 install flask
+- `sudo pip3 install flask`
 
 ### Connecting Python to MongoDB
-- sudo pip3 install flask-pymongo
-- sudo pip3 install dnspython
+- `sudo pip3 install flask-pymongo`
+- `sudo pip3 install dnspython`
 
 ### Deployment to Heroku and Github
 #### Install Homebrew
-- /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+- `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
 #### Install Heroku
-- brew tap heroku/brew && brew install heroku
+- `brew tap heroku/brew && brew install heroku`
 
 #### Login to Heroku 
-- heroku login 
+- `heroku login `
 
 #### Add requirements.txt
-- sudo pip3 freeze -- local > requirements.txt
+- `sudo pip3 freeze -- local > requirements.txt`
 
 #### Deployment onto Github
-- git add .
-- git status
-- git commit -m ""
-- git push origin master
-- heroku git:remote -a language-learners-app
+- `git init` (To create a new Git repository)
+- `git add .`
+- `git status`
+- `git commit -m "a short description of the update"`
+- `git push origin master`
+- `heroku git:remote -a language-learners-app`
 
 #### Add a Procfile and make the website work on Heroku
-- echo web: python app.py > Procfile
-- git add .
-- git commit -m "Added Procfile"
-- git push origin master
-- git push heroku master
-- heroku ps:scale web=1
+- `echo web: python app.py > Procfile`
+- `git add .`
+- `git commit -m "a short description of the update"`
+- `git push origin master`
+- `git push heroku master`
+- `heroku ps:scale web=1`
 - For the website to work on Heroku, the statics must be disabled, through `DISABLE_COLLECTSTATIC=1`
+- On the Heroku website, in the project, under 'Deploy', conntect Github, find the repository to the project and click on the button that enables automatic deployment that way only deployment to Github is needed in the terminal and it will automatically be deployed to Heroku
 
 ## Resources
 ### Lesson contents
