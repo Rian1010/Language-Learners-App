@@ -395,7 +395,7 @@ As for the JavaScript EmailJS API, I used the same code as in my second mileston
 The local variables that I have for this project are in an env.py file. The environment variables that I have in that file are called 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT', which have the values that are required in the app.py file for the mongo URI password, the secret key password and the debug value. As 'DEVELOPMENT' takes care of the debug value, it is set to True locally.
 
 #### Heroku Configuration Variables
-The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT' variables. The 'SECRET_KEY' and 'MONGO_URI' contain the same passwords on Heroku as they do locally in the env.py file. The 'DEVELOPMENT' variable is set to True, while I am working on it, but it is set to False when submitting the project, after working on it.
+The configuration variables that I have on Heroku are the 'IP', 'PORT', 'SECRET_KEY', 'MONGO_URI' and 'DEVELOPMENT' variables. The 'SECRET_KEY' and 'MONGO_URI' contain the same passwords on Heroku as they do locally in the env.py file. The 'DEVELOPMENT' variable is set to 1, while I am working on it, but it is set to False when submitting the project, after working on it.
 
 ## Deployments and Installations
 ### How to Install Flask
