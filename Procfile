@@ -1,2 +1,2 @@
 web: python app.py
-web: gunicorn language-learners-app.wsgi
+web: gunicorn language_learners_app.wsgi
