@@ -2,6 +2,7 @@ astroid==2.3.3
 click==7.1.1
 dnspython==1.16.0
 Flask==1.1.1
+PyMongo>=3.0
 Flask-PyMongo==2.3.0
 isort==4.3.21
 itsdangerous==1.1.0
